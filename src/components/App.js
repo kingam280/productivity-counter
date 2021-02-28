@@ -19,10 +19,10 @@ function App() {
         <Menu />
         <Switch>
           <Route exact path="/">
-            <Timer />
+            <Timer startTime={5}/>
           </Route>
           <Route path="/timer">
-            <Timer />
+            <Timer startTime={5}/>
           </Route>
           <Route path="/stats">
             <Stats />
