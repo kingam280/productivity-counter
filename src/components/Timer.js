@@ -13,13 +13,16 @@ export default function Timer({startTime}) {
 
     useEffect(() => {
       let intervalSec = null
-      if (isCounting && focusTimeSeconds === 0) {
+      if (isCounting && focusTimeSeconds === 0 && focusTimeMinutes !==0) {
         setTimeout( () => {
           setFoucsTimeSeconds(59)
           setFoucsTimeMinutes(prev => prev - 1)
         }, 1000)
       } else if (isCounting && focusTimeSeconds !== 0) {
         intervalSec = setInterval( () => setFoucsTimeSeconds( prev => prev - 1), 1000)
+      } else if (isCounting && focusTimeMinutes === 0 && focusTimeSeconds === 0) {
+        setIsCounting(prev => !prev)
+        setFoucsTimeMinutes(startTime)
       } else {
         clearInterval(intervalSec)
       }
@@ -27,7 +30,7 @@ export default function Timer({startTime}) {
       return () => {
         clearInterval(intervalSec)
       }
-    }, [isCounting, focusTimeSeconds])
+    }, [isCounting, focusTimeSeconds, focusTimeMinutes])   
 
     return (
       <div className="timer-container">
