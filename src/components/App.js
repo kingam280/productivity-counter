@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,22 +13,31 @@ import NotFound from './NotFound'
 import '../styles/App.css';
 
 function App() {
+  const [focusTime, setFocusTime] = useState(50)
+
+  const handleFocusTimeChange = (focusTime) => {
+    setFocusTime(focusTime)
+  }
+  
   return (
     <Router>
       <div className="App">
         <Menu />
         <Switch>
           <Route exact path="/">
-            <Timer startTime={5}/>
+            <Timer startTime={focusTime}/>
           </Route>
           <Route path="/timer">
-            <Timer startTime={5}/>
+            <Timer startTime={focusTime}/>
           </Route>
           <Route path="/stats">
             <Stats />
           </Route>
           <Route path="/settings">
-            <Settings />
+            <Settings 
+            handleFocusTimeChange={handleFocusTimeChange} 
+            focus={focusTime}
+            />
           </Route>
           <Route>
             <NotFound />
