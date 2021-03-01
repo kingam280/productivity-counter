@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Menu.css';
 
 export default function Menu() {
     
     return (
-      <div className="App">
-        <nav>
-            <Link to="/timer">Timer</Link>
-            <Link to="/stats">Stats</Link>
-            <Link to="/settings">Settings</Link>
+
+        <nav className="menu">
+            <Link to="/timer" className="menu-item">Timer</Link>
+            <Link to="/stats" className="menu-item">Stats</Link>
+            <Link to="/settings" className="menu-item">Settings</Link>
         </nav>
-      </div>
+
     );
   }
