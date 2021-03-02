@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import '../styles/Timer.css';
-import addRecordToDatabase from '../data/addRecordToDatabes'
+import './Timer.css';
+import addRecordToDatabase from '../../data/addRecordToDatabes'
 
 export default function Timer({startTime}) {
 

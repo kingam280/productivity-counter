@@ -4,13 +4,13 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Menu from './Menu'
-import Footer from './Footer'
-import Timer from './Timer'
-import Stats from './Stats'
-import Settings from './Settings'
-import NotFound from './NotFound'
-import '../styles/App.css';
+import Menu from './Menu/Menu'
+import Footer from './Footer/Footer'
+import Timer from './Timer/Timer'
+import Stats from './Stats/Stats'
+import Settings from './Settings/Settings'
+import NotFound from './NotFound/NotFound'
+import './App.css';
 
 function App() {
   const [focusTime, setFocusTime] = useState(50)

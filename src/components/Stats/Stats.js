@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from '../axios'
+import axios from '../../config/axios'
 // import getRecordsFromDatabase from '../data/getRecordsFromDatabase'
 
 export default function Stats() {
@@ -27,7 +27,7 @@ export default function Stats() {
       const year = date.getFullYear()
       return (
         <>
-          <tr key={record.timestamp}>
+          <tr>
             <td>{day}/{month}/{year}</td>
             <td>{record.label}</td>
             <td>{record.timeInMinutes} min</td>
