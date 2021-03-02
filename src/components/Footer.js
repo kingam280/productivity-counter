@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/Footer.css';
 
 export default function Menu() {
     
     return (
-      <div className="App">
+      <div className="footer">
         Created by Kinga Mamak
       </div>
     );

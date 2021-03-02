@@ -21,7 +21,7 @@ export default function Timer({startTime}) {
       let intervalSec = null
       if (isCounting && focusTimeSeconds === 0 && focusTimeMinutes !==0) {
         setTimeout( () => {
-          setFoucsTimeSeconds(10)
+          setFoucsTimeSeconds(59)
           setFoucsTimeMinutes(prev => prev - 1)
         }, 1000)
       } else if (isCounting && focusTimeSeconds !== 0) {
@@ -42,11 +42,12 @@ export default function Timer({startTime}) {
 
     return (
       <div className="timer-container">
-        <input ref={label} type="text" placeholder="Add label"></input>
+        <input id="label-input" ref={label} type="text" placeholder="Add label"></input>
         <div className="timer">
-          {focusTimeMinutes}:{focusTimeSeconds > 9 ? focusTimeSeconds : '0' + focusTimeSeconds}
+          <p className="timer-time">{focusTimeMinutes}:{focusTimeSeconds > 9 ? focusTimeSeconds : '0' + focusTimeSeconds}</p>
+          <p className="timer-type">FOCUS</p>
         </div>
-        <button onClick={handleCountingClick}>{isCounting ? "Pause" : "Start"}</button>
+        <i onClick={handleCountingClick} className={isCounting ? "timer-start far fa-pause-circle" : "timer-start far fa-play-circle"}></i>
       </div>
     );
   }
