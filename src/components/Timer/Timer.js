@@ -8,6 +8,8 @@ export default function Timer({startTime}) {
     const [focusTimeMinutes, setFoucsTimeMinutes] = useState(startTime);
     const [focusTimeSeconds, setFoucsTimeSeconds] = useState(0);
     
+    const sound = new Audio('www.cs.albany.edu/~sdc/CSI310/Spr11/CSI310Spr11/media-sourc.../warble-h.wav')
+
     const label = useRef(null)
 
     const handleCountingClick = () => {
@@ -31,6 +33,7 @@ export default function Timer({startTime}) {
         setFoucsTimeMinutes(startTime)
         addRecordToDatabase(startTime, label.current.value)
         label.current.value = null
+        sound.play()
       } else {
         clearInterval(intervalSec)
       }
@@ -42,6 +45,7 @@ export default function Timer({startTime}) {
 
     return (
       <div className="timer-container">
+        <h2>Timer</h2>
         <input id="label-input" ref={label} type="text" placeholder="Add label"></input>
         <div className="timer">
           <p className="timer-time">{focusTimeMinutes}:{focusTimeSeconds > 9 ? focusTimeSeconds : '0' + focusTimeSeconds}</p>

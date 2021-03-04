@@ -22,6 +22,7 @@ export default function Stats() {
 
     return (
       <div className="stats">
+        <h2>Statistics</h2>
         <table>
           <thead>
             <tr>

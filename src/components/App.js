@@ -35,7 +35,7 @@ function App() {
           </Route>
           <Route path="/settings">
             <Settings 
-            handleFocusTimeChange={handleFocusTimeChange} 
+            handleFocusTimeChange={setFocusTime} 
             focus={focusTime}
             />
           </Route>

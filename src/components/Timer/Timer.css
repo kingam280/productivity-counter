@@ -9,13 +9,14 @@
   border-radius: 50%;
   text-align: center;
   margin: 5vh auto;
+  animation: timer-animation linear infinite 1s alternate-reverse;
 }
 
 #label-input {
   position: relative;
   display: block;
   padding: 5px;
-  margin: 15vh auto 0;
+  margin: 0 auto 0;
   text-align: center;
 }
 
@@ -34,4 +35,14 @@
   text-align: center;
   font-size: 3rem;
   color: var(--main-color);
+}
+
+@keyframes timer-animation {
+  0% {
+    border-width: 8px;
+  }
+
+  100% {
+    border-width: 15px;
+  }
 }
