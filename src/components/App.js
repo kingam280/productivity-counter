@@ -14,21 +14,24 @@ import './App.css';
 
 function App() {
   const [focusTime, setFocusTime] = useState(50)
+  const [alarmSound, setAlarmSound] = useState('')
 
-  const handleFocusTimeChange = (focusTime) => {
-    setFocusTime(focusTime)
-  }
-  
   return (
     <Router>
       <div className="app">
         <Menu />
         <Switch>
           <Route exact path="/">
-            <Timer startTime={focusTime}/>
+            <Timer 
+            startTime={focusTime}
+            sound={alarmSound}
+            />
           </Route>
           <Route path="/timer">
-            <Timer startTime={focusTime}/>
+            <Timer 
+            startTime={focusTime}
+            alarmSound={alarmSound}
+            />
           </Route>
           <Route path="/stats">
             <Stats />
@@ -37,6 +40,8 @@ function App() {
             <Settings 
             handleFocusTimeChange={setFocusTime} 
             focus={focusTime}
+            setAlarmSound={setAlarmSound}
+            alarmSound={alarmSound}
             />
           </Route>
           <Route>

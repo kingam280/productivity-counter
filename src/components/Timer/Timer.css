@@ -9,7 +9,7 @@
   border-radius: 50%;
   text-align: center;
   margin: 5vh auto;
-  animation: timer-animation linear infinite 1s alternate-reverse;
+  /* animation: timer-animation linear infinite 1s alternate-reverse; */
 }
 
 #label-input {
@@ -39,10 +39,10 @@
 
 @keyframes timer-animation {
   0% {
-    border-width: 8px;
+    transform: scale(1);
   }
 
   100% {
-    border-width: 15px;
+    transform: scale(1.1);
   }
 }

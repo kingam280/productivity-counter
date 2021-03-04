@@ -1,20 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Timer.css';
-import addRecordToDatabase from '../../data/addRecordToDatabes'
+import addRecordToDatabase from '../../helpers/addRecordToDatabes'
+import setSound from '../../helpers/setSound'
 
-export default function Timer({startTime}) {
+
+export default function Timer({startTime, alarmSound}) {
 
     const [isCounting, setIsCounting] = useState(false);
     const [focusTimeMinutes, setFoucsTimeMinutes] = useState(startTime);
     const [focusTimeSeconds, setFoucsTimeSeconds] = useState(0);
     
-    const sound = new Audio('www.cs.albany.edu/~sdc/CSI310/Spr11/CSI310Spr11/media-sourc.../warble-h.wav')
-
     const label = useRef(null)
 
     const handleCountingClick = () => {
       setIsCounting(prevState => !prevState)
-      label.current.focus()
+      label.current.focus() 
     }
     
     
@@ -33,6 +33,7 @@ export default function Timer({startTime}) {
         setFoucsTimeMinutes(startTime)
         addRecordToDatabase(startTime, label.current.value)
         label.current.value = null
+        const sound = new Audio(setSound(alarmSound))
         sound.play()
       } else {
         clearInterval(intervalSec)
@@ -41,13 +42,13 @@ export default function Timer({startTime}) {
       return () => {
         clearInterval(intervalSec)
       }
-    }, [isCounting, focusTimeSeconds, focusTimeMinutes, startTime])   
+    }, [isCounting, focusTimeSeconds, focusTimeMinutes, startTime, alarmSound])   
 
     return (
       <div className="timer-container">
         <h2>Timer</h2>
         <input id="label-input" ref={label} type="text" placeholder="Add label"></input>
-        <div className="timer">
+        <div className="timer" style={isCounting ? {animationPlayState: "running"} : {animationPlayState: "paused"}}>
           <p className="timer-time">{focusTimeMinutes}:{focusTimeSeconds > 9 ? focusTimeSeconds : '0' + focusTimeSeconds}</p>
           <p className="timer-type">FOCUS</p>
         </div>
