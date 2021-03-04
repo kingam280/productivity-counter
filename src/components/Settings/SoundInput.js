@@ -12,7 +12,7 @@ const SoundInput = ({setAlarmSound, alarmSound}) => {
     }
     return (
         <>
-        <h3>Choose sound</h3>
+        <h3>Alarm sound</h3>
         <select name="sound" id="sound" onChange={handleChange} value={alarmSound}>
             <option value="alarm-sound">Alarm</option>
             <option value="birds-sound">Birds</option>

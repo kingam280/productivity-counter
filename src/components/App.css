@@ -2,5 +2,9 @@
   margin-top: 10vh;
 }
 
+.container {
+  min-height: 80vh;
+}
+
 /* background-color: #7f668f;
   color: #fff; */

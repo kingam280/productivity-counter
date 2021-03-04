@@ -45,7 +45,7 @@ export default function Timer({startTime, alarmSound}) {
     }, [isCounting, focusTimeSeconds, focusTimeMinutes, startTime, alarmSound])   
 
     return (
-      <div className="timer-container">
+      <div className="timer-container container">
         <h2>Timer</h2>
         <input id="label-input" ref={label} type="text" placeholder="Add label"></input>
         <div className="timer" style={isCounting ? {animationPlayState: "running"} : {animationPlayState: "paused"}}>

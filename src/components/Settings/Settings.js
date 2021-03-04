@@ -6,7 +6,7 @@ import './Settings.css';
 export default function Settings({handleFocusTimeChange, focus, setAlarmSound, alarmSound}) {
 
     return (
-      <div className="App">
+      <div className="settings container">
         <h2>Settings</h2>
         <FocusTimeSlider handleFocusTimeChange={handleFocusTimeChange} focus={focus}/>
         <SoundInput setAlarmSound={setAlarmSound} alarmSound={alarmSound} />
