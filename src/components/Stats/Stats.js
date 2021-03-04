@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from '../../config/axios'
-// import getRecordsFromDatabase from '../data/getRecordsFromDatabase'
+import Record from './Record'
 
 export default function Stats() {
   const [records, setRecords] = useState([])
@@ -20,22 +20,6 @@ export default function Stats() {
       getRecordsFromDatabase()
     }, [])
 
-    const displayRecord = (record) => {
-      const date = new Date(record.timestamp)
-      const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-      const month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()
-      const year = date.getFullYear()
-      return (
-        <>
-          <tr>
-            <td>{day}/{month}/{year}</td>
-            <td>{record.label}</td>
-            <td>{record.timeInMinutes} min</td>
-          </tr>
-        </>
-      )
-    }
-
     return (
       <div className="stats">
         <table>
@@ -47,7 +31,7 @@ export default function Stats() {
             </tr>
           </thead>
           <tbody>
-            {records.map( (item, i) => displayRecord(item))}
+            {records.map( record => <Record timestamp={record.timestamp} label={record.label} timeInMinutes={record.timeInMinutes} /> ) }
           </tbody>
           
         </table>
