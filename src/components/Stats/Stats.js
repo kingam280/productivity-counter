@@ -1,25 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import axios from '../../config/axios'
+import React from 'react';
 import Record from './Record'
 import './Stats.css';
+import useStats from '../../hooks/useStats'
 
 export default function Stats() {
-  const [records, setRecords] = useState([])
-
-    const getRecordsFromDatabase = async () => {
-      axios
-        .get('/records.json')
-        .then(res => res.data)
-        .then(data => {
-          for (let record in data) {
-            setRecords(prev => Array(data[record]).concat(prev))
-          }
-        })
-    }
-
-    useEffect(() => {
-      getRecordsFromDatabase()
-    }, [])
+    const records = useStats()
 
     return (
       <div className="stats container">
@@ -33,7 +18,7 @@ export default function Stats() {
             </tr>
           </thead>
           <tbody>
-            {records.map( record => <Record timestamp={record.timestamp} label={record.label} timeInMinutes={record.timeInMinutes} /> ) }
+            {records.length > 0 ? records.map( record => <Record timestamp={record.timestamp} label={record.label} timeInMinutes={record.timeInMinutes} /> ) : "Ładowanie..." }
           </tbody>
           
         </table>
