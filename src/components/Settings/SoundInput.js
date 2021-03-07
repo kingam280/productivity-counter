@@ -2,7 +2,7 @@ import React from 'react'
 import setSound from '../../utils/setSound'
 
 const SoundInput = ({setAlarmSound, alarmSound}) => {
-    console.log(alarmSound)
+
     const handleChange = (e) => {
         let alarmSound = e.target.value
         const soundPath = setSound(alarmSound)

@@ -14,7 +14,7 @@ import './App.css';
 
 function App() {
   const [focusTime, setFocusTime] = useState(50)
-  const [alarmSound, setAlarmSound] = useState('')
+  const [alarmSound, setAlarmSound] = useState('alarm-sound')
 
   return (
     <Router>
