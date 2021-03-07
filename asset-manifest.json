@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/productivity-counter/static/css/main.df36c178.chunk.css",
+    "main.js": "/productivity-counter/static/js/main.cc846ce9.chunk.js",
+    "main.js.map": "/productivity-counter/static/js/main.cc846ce9.chunk.js.map",
+    "runtime-main.js": "/productivity-counter/static/js/runtime-main.996ac48a.js",
+    "runtime-main.js.map": "/productivity-counter/static/js/runtime-main.996ac48a.js.map",
+    "static/js/2.40758d6d.chunk.js": "/productivity-counter/static/js/2.40758d6d.chunk.js",
+    "static/js/2.40758d6d.chunk.js.map": "/productivity-counter/static/js/2.40758d6d.chunk.js.map",
+    "index.html": "/productivity-counter/index.html",
+    "static/css/main.df36c178.chunk.css.map": "/productivity-counter/static/css/main.df36c178.chunk.css.map",
+    "static/js/2.40758d6d.chunk.js.LICENSE.txt": "/productivity-counter/static/js/2.40758d6d.chunk.js.LICENSE.txt",
+    "static/media/loading-spinner.2b3e1008.gif": "/productivity-counter/static/media/loading-spinner.2b3e1008.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.996ac48a.js",
+    "static/js/2.40758d6d.chunk.js",
+    "static/css/main.df36c178.chunk.css",
+    "static/js/main.cc846ce9.chunk.js"
+  ]
+}
