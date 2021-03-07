@@ -1,7 +1,8 @@
 import React from 'react';
 import Record from './Record'
+import Loading from '../Loading/Loading'
 import './Stats.css';
-import useStats from '../../hooks/useStats'
+import useStats from '../../utils/useStats'
 
 export default function Stats() {
     const records = useStats()
@@ -18,7 +19,7 @@ export default function Stats() {
             </tr>
           </thead>
           <tbody>
-            {records.length > 0 ? records.map( record => <Record timestamp={record.timestamp} label={record.label} timeInMinutes={record.timeInMinutes} /> ) : "Ładowanie..." }
+            {records.length > 0 ? records.map( record => <Record timestamp={record.timestamp} label={record.label} timeInMinutes={record.timeInMinutes} /> ) : <Loading /> }
           </tbody>
           
         </table>

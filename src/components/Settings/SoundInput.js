@@ -1,5 +1,5 @@
 import React from 'react'
-import setSound from '../../helpers/setSound'
+import setSound from '../../utils/setSound'
 
 const SoundInput = ({setAlarmSound, alarmSound}) => {
     console.log(alarmSound)

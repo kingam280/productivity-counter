@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Timer.css';
-import addRecordToDatabase from '../../helpers/addRecordToDatabes'
-import setSound from '../../helpers/setSound'
+import addRecordToDatabase from '../../utils/addRecordToDatabes'
+import setSound from '../../utils/setSound'
 
 
 export default function Timer({startTime, alarmSound}) {

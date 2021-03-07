@@ -1,0 +1,9 @@
+.loading {
+  position: relative;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 75px;
+  height: 75px;
+}
