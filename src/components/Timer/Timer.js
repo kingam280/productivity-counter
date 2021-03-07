@@ -3,47 +3,62 @@ import './Timer.css';
 import addRecordToDatabase from '../../utils/addRecordToDatabes'
 import setSound from '../../utils/setSound'
 
-
 export default function Timer({startTime, alarmSound}) {
 
     const [isCounting, setIsCounting] = useState(false);
     const [focusTimeMinutes, setFoucsTimeMinutes] = useState(startTime);
     const [focusTimeSeconds, setFoucsTimeSeconds] = useState(0);
-    
+    const [timerInfo, setTimerInfo] = useState({
+      time: startTime * 1000 * 60,
+      timeLeft: startTime * 1000 * 60,
+      startDate: Date.now()
+    })
     const label = useRef(null)
 
     const handleCountingClick = () => {
       setIsCounting(prevState => !prevState)
       label.current.focus() 
     }
-    
-    
 
     useEffect(() => {
-      let intervalSec = null
-      if (isCounting && focusTimeSeconds === 0 && focusTimeMinutes !==0) {
-        setTimeout( () => {
-          setFoucsTimeSeconds(59)
-          setFoucsTimeMinutes(prev => prev - 1)
+      let timer = null
+
+      if (isCounting && timerInfo.timeLeft >= 1000) {
+        timer = setTimeout(() => {
+          setTimerInfo(prev => ({
+            ...prev,
+            timeLeft: prev.timeLeft - (Date.now() - prev.startDate),
+            startDate: Date.now() 
+          }))
+        }, 100);
+      } else if (!isCounting) {
+        timer = setTimeout(() => {
+          setTimerInfo(prev => ({
+            ...prev,
+            startDate: Date.now() 
+          }))
         }, 1000)
-      } else if (isCounting && focusTimeSeconds !== 0) {
-        intervalSec = setInterval( () => setFoucsTimeSeconds( prev => prev - 1), 1000)
-      } else if (isCounting && focusTimeMinutes === 0 && focusTimeSeconds === 0) {
-        setIsCounting(prev => !prev)
-        setFoucsTimeMinutes(startTime)
-        addRecordToDatabase(startTime, label.current.value)
-        label.current.value = null
-        const sound = new Audio(setSound(alarmSound))
-        sound.play()
-      } else {
-        clearInterval(intervalSec)
+        
+      } else if (isCounting && timerInfo.timeLeft < 1000) {
+        timer = setTimeout(() => {
+          setIsCounting(prev => !prev)
+          setTimerInfo(prev => ({
+            ...prev,
+            timeLeft: startTime * 1000 * 60,
+          }))
+          addRecordToDatabase(startTime, label.current.value)
+          label.current.value = null
+          const sound = new Audio(setSound(alarmSound))
+          sound.play()
+        }, 100)  
       }
 
-      return () => {
-        clearInterval(intervalSec)
-      }
-    }, [isCounting, focusTimeSeconds, focusTimeMinutes, startTime, alarmSound])   
+      setFoucsTimeMinutes(Math.floor((timerInfo.timeLeft / 1000 / 60) % 60))
+      setFoucsTimeSeconds(Math.floor((timerInfo.timeLeft / 1000) % 60))
 
+      return () => clearInterval(timer)
+    }, [isCounting, timerInfo, alarmSound, startTime])
+    
     return (
       <div className="timer-container container">
         <h2>Timer</h2>

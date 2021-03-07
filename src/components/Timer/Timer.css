@@ -33,8 +33,10 @@
 .timer-start {
   display: block;
   text-align: center;
+  width: 3rem;
   font-size: 3rem;
   color: var(--main-color);
+  margin: 0 auto;
 }
 
 @keyframes timer-animation {
