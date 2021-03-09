@@ -23,14 +23,14 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Timer 
-            startTime={focusTime}
-            sound={alarmSound}
+              startTime={focusTime}
+              sound={alarmSound}
             />
           </Route>
           <Route path="/timer">
             <Timer 
-            startTime={focusTime}
-            alarmSound={alarmSound}
+              startTime={focusTime}
+              alarmSound={alarmSound}
             />
           </Route>
           <Route path="/stats">
@@ -38,10 +38,10 @@ function App() {
           </Route>
           <Route path="/settings">
             <Settings 
-            handleFocusTimeChange={setFocusTime} 
-            focus={focusTime}
-            setAlarmSound={setAlarmSound}
-            alarmSound={alarmSound}
+              handleFocusTimeChange={setFocusTime} 
+              focus={focusTime}
+              setAlarmSound={setAlarmSound}
+              alarmSound={alarmSound}
             />
           </Route>
           <Route>
