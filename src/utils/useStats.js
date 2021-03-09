@@ -1,12 +1,12 @@
 import {useEffect, useState} from 'react'
 import axios from '../config/axios'
 
-const useStats = () => {
+const useStats = (id) => {
     const [records, setRecords] = useState([])
     
     const getRecordsFromDatabase = async () => {
         await axios
-          .get('/records.json')
+          .get(`/${id}.json`)
           .then(res => res.data)
           .then(data => {
             for (let record in data) {

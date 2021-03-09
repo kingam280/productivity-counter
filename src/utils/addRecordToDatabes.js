@@ -1,6 +1,6 @@
 import axios from '../config/axios'
 
-export default function addRecordToDatabase(startTime, label) {
+export default function addRecordToDatabase(startTime, label, id) {
     const data = {
         label: label || 'no label',
         timeInMinutes: startTime,
@@ -8,7 +8,7 @@ export default function addRecordToDatabase(startTime, label) {
     }
 
     axios
-        .post('records.json', data)
+        .post(`/${id}.json`, data)
         .then(console.log('Successfully added to database'))
         .catch(error => console.log(error))
 }

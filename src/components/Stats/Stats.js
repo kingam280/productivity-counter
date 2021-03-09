@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Record from './Record'
 import Loading from '../Loading/Loading'
 import './Stats.css';
 import useStats from '../../utils/useStats'
+import { AuthContext } from '../../contexts/Auth'
 
 export default function Stats() {
-    const records = useStats()
+    const { user } = useContext(AuthContext)
+    const records = useStats(user)
 
     return (
       <div className="stats container">

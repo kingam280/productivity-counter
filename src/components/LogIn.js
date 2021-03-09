@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import firebase from '../config/firebase'
+import {AuthContext} from '../contexts/Auth'
 
-const SignIn = () => {
+const LogIn = () => {
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
+    const { setUser } = useContext(AuthContext)
 
     const updateForm = (e) => {
         setForm(prev => {
@@ -18,17 +20,16 @@ const SignIn = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
+        firebase.auth().signInWithEmailAndPassword(form.email, form.password)
             .then((userCredential) => {
-                // Signed in 
                 var user = userCredential.user;
-                // ...
-                console.log(user)
+                setUser(user.uid)
+                localStorage.setItem('userId', user.uid)
+                
             })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                // ..
                 console.log(errorCode, errorMessage)
             });
     }
@@ -39,10 +40,10 @@ const SignIn = () => {
                 <input type="email" id="email" onChange={updateForm} />
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" onChange={updateForm} />
-                <button>Sign in</button>
+                <button>Log in</button>
             </form>
         </div>
     )
 }
 
-export default SignIn
+export default LogIn

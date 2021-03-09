@@ -1,6 +1,7 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import addRecordToDatabase from '../../utils/addRecordToDatabes';
 import setSound from '../../utils/setSound';
+import { AuthContext } from '../../contexts/Auth'
 
 const CountDown = ({isCounting, setIsCounting, startTime, label, alarmSound}) => {
     const [focusTimeMinutes, setFoucsTimeMinutes] = useState(startTime);
@@ -10,6 +11,7 @@ const CountDown = ({isCounting, setIsCounting, startTime, label, alarmSound}) =>
       timeLeft: startTime * 1000 * 60,
       startDate: Date.now()
     })
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
         let timer = null
@@ -37,7 +39,8 @@ const CountDown = ({isCounting, setIsCounting, startTime, label, alarmSound}) =>
               ...prev,
               timeLeft: startTime * 1000 * 60,
             }))
-            addRecordToDatabase(startTime, label.current.value)
+            const id = user
+            addRecordToDatabase(startTime, label.current.value, id)
             label.current.value = null
             const sound = new Audio(setSound(alarmSound))
             sound.play()
@@ -48,7 +51,7 @@ const CountDown = ({isCounting, setIsCounting, startTime, label, alarmSound}) =>
         setFoucsTimeSeconds(Math.floor((timerInfo.timeLeft / 1000) % 60))
   
         return () => clearInterval(timer)
-      }, [isCounting, timerInfo, alarmSound, startTime, label, setIsCounting])
+      }, [isCounting, timerInfo, alarmSound, startTime, label, setIsCounting, user])
       
     return (
         <div className="timer" style={isCounting ? {animationPlayState: "running"} : {animationPlayState: "paused"}}>
