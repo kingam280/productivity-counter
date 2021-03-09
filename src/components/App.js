@@ -4,14 +4,14 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Menu from './Menu/Menu'
+import TopPanel from './TopPanel/TopPanel'
 import Footer from './Footer/Footer'
 import Timer from './Timer/Timer'
 import Stats from './Stats/Stats'
 import Settings from './Settings/Settings'
 import NotFound from './NotFound/NotFound'
-import SignUp from './SignUp'
-import LogIn from './LogIn'
+import SignUp from './LogIn & SignUp/SignUp'
+import LogIn from './LogIn & SignUp/LogIn'
 import './App.css';
 import { AuthProvider } from '../contexts/Auth'
 
@@ -23,7 +23,7 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="app">
-          <Menu />
+          <TopPanel />
           <Switch>
             <Route exact path="/">
               <Timer 

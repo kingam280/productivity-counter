@@ -7,12 +7,13 @@ import { AuthContext } from '../../contexts/Auth'
 
 export default function Stats() {
     const { user } = useContext(AuthContext)
-    const records = useStats(user)
+    const {records, loading} = useStats(user)
 
-    return (
-      <div className="stats container">
-        <h2>Statistics</h2>
-        {records.length > 0 ? 
+    const displayTable = () => {
+      if (loading) {
+        return <Loading />
+      } else if (records.length > 0) {
+        return (
           <table>
             <thead>
               <tr>
@@ -24,7 +25,27 @@ export default function Stats() {
             <tbody>
               {records.map( record => <Record timestamp={record.timestamp} label={record.label} timeInMinutes={record.timeInMinutes} key={record.timestamp} /> ) }
             </tbody>
-          </table> : <Loading /> }
+          </table>
+        )
+      } else {
+        return (
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Label</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+          </table>
+        )
+      }
+    }
+
+    return (
+      <div className="stats container">
+        <h2>Statistics</h2>
+        {displayTable()}
       </div>
     );
   }

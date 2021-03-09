@@ -1,5 +1,6 @@
 .menu {
   display: flex;
+  flex-wrap: wrap;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,8 +9,29 @@
   z-index: 10;
 }
 
-.menu-item {
+.log-panel {
   flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: var(--main-color);
+  color: white;
+  letter-spacing: 2px;
+}
+
+.log-panel > p {
+  width: 50%;
+}
+
+.log-panel > button {
+  display: block;
+  padding: 5px;
+  background-color: var(--second-color);
+}
+
+.menu-item {
+  flex-basis: 33%;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
