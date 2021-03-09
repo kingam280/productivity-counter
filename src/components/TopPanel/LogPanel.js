@@ -1,17 +1,19 @@
 import React, {useContext} from 'react';
 import {AuthContext} from '../../contexts/Auth'
+import { useHistory } from "react-router-dom";
 
 
 export default function LogPanel() {
     const { user, setUser } = useContext(AuthContext)
+    const history = useHistory()
 
     const handleClick = (e) => {
         if (e.target.textContent === "Log out") {
             localStorage.setItem('userId', '')
             setUser('')
-            window.location.replace("timer")
+            history.push('/timer')
         } else if (e.target.textContent === "Log in") {
-            window.location.replace("login")
+            history.push('/login')
         }
     }
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <Router>
+      <Router >
         <div className="app">
           <TopPanel />
           <Switch>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import firebase from '../../config/firebase'
 import {AuthContext} from '../../contexts/Auth'
 import './Log.css';
+import { useHistory } from "react-router-dom";
 
 const LogComponent = ({type}) => {
     const [form, setForm] = useState({
@@ -11,6 +12,7 @@ const LogComponent = ({type}) => {
     })
     const [error, setError] = useState('')
     const { setUser } = useContext(AuthContext)
+    const history = useHistory()
 
     const updateForm = (e) => {
         setError(false)
@@ -29,7 +31,7 @@ const LogComponent = ({type}) => {
                 var user = userCredential.user;
                 setUser(user.uid)
                 localStorage.setItem('userId', user.uid)
-                window.location.replace("/timer")
+                history.push('/timer')
             })
             .catch((error) => {
                 var errorCode = error.code;
@@ -41,7 +43,7 @@ const LogComponent = ({type}) => {
             firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
             .then((userCredential) => {
                 var user = userCredential.user;
-                window.location.replace("/login")
+                history.push('/login')
             })
             .catch((error) => {
                 var errorCode = error.code;
@@ -64,7 +66,7 @@ const LogComponent = ({type}) => {
                 <button>{type === "login" ? "Log in" : "Sign in"}</button>
                 <p>{error}</p>
             </form>
-            {type === "login" ? <p className="side-info">Sign up <Link to="/signup">here</Link></p> : null}
+            {type === "login" ? <p className="side-info"><Link to="/signup" className="clickable">Sign up</Link></p> : null}
         </div>
     )
 }

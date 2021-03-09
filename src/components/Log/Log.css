@@ -29,3 +29,9 @@
   width: 100%;
   text-align: center;
 }
+
+.clickable {
+  padding: 5px;
+  box-shadow: 0px 0px 2px 1px var(--main-color);
+  background-color: var(--second-color);
+}
