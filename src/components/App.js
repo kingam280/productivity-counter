@@ -10,8 +10,7 @@ import Timer from './Timer/Timer'
 import Stats from './Stats/Stats'
 import Settings from './Settings/Settings'
 import NotFound from './NotFound/NotFound'
-import SignUp from './LogIn & SignUp/SignUp'
-import LogIn from './LogIn & SignUp/LogIn'
+import Log from './Log/Log'
 import './App.css';
 import { AuthProvider } from '../contexts/Auth'
 
@@ -49,10 +48,10 @@ function App() {
               />
             </Route>
             <Route path="/signup">
-              <SignUp />
+              <Log type="signup" />
             </Route>
             <Route path="/login">
-              <LogIn />
+              <Log type="login"/>
             </Route>
             <Route>
               <NotFound />
