@@ -31,6 +31,12 @@ Use `npm run test` to run tests.
 
 ## Features
 
+![Timer snapshot](./src/assets/timer.JPG)
+
+![Stats snapshot](./src/assets/stats.JPG)
+
+![Settings snapshot](./src/assets/settings.JPG)
+
 ## Inspiration
 
 Project was inspired by https://pomodor.app/timer.
