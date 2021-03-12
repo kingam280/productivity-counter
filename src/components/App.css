@@ -4,9 +4,64 @@
 
 .container {
   min-height: 72vh;
+  width: 100%;
+  padding-bottom: 5%;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+h2 {
+  text-align: center;
+  padding: 7.5% 0;
+  font-size: 24px;
+}
+
+h3 {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+button {
+  cursor: pointer;
+}
+
+@media (min-width: 568px) {
+  .app {
+    margin-top: 15vh;
+  }
+  .container {
+    min-height: 75vh;
+    width: 70%;
+    margin: 0 auto;
+  }
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+  button {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+    width: 50%;
+  }
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+  button {
+    font-size: 16px;
+  }
 }
