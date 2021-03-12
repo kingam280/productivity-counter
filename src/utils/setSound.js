@@ -1,13 +1,18 @@
+import alarm from '../assets/alarm-sound.wav'
+import tink from '../assets/tink-sound.wav'
+import click from '../assets/click-sound.wav'
+import bird from '../assets/bird-sound.wav'
+
 const setSound = (alarmSound) => {
     let soundPath
     if (alarmSound === "click-sound") {
-        soundPath = "http://www.astrofegia.com/Music/Wav/Utopia%20Close.wav"
+        soundPath = click
     } else if (alarmSound === "tink-sound") {
-        soundPath = "http://princezze.free.fr/sounds/select6.wav"
+        soundPath = tink
     } else if (alarmSound === "birds-sound") {
-        soundPath = "http://rus.gflora.com/page/Misc/birds/songsparrow.wav"
+        soundPath = bird
     } else if (alarmSound === "alarm-sound") {
-        soundPath = "http://david.guerrero.free.fr/Effects/WeaponHoming.wav"
+        soundPath = alarm
     }
 
     return soundPath
