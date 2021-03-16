@@ -10,6 +10,12 @@ Productivity Counter was designed to track your daily productivity. With simple 
 4. [Features](#features)
 5. [Inspiration](#inspiration)
 
+![Timer snapshot](./src/assets/timer.JPG)
+
+![Stats snapshot](./src/assets/stats.JPG)
+
+![Settings snapshot](./src/assets/settings.JPG)
+
 ## Technologies
 
 - CSS
@@ -31,11 +37,17 @@ Use `npm run test` to run tests.
 
 ## Features
 
-![Timer snapshot](./src/assets/timer.JPG)
+- signing up ang logging in implemented with Firebase Authentiaction
+- timer section with countdown timer and possibility to add label
+- saving sessions to Firebase Realtime Database
+- stats section for logged users which shows latest sessions
+- settings with possibility to set focus time and alarm sound
 
-![Stats snapshot](./src/assets/stats.JPG)
+To do:
 
-![Settings snapshot](./src/assets/settings.JPG)
+- save sessions to local storage for nost logged users
+- charts in stats section
+- tests
 
 ## Inspiration
 
