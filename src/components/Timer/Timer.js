@@ -1,14 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './Timer.css';
 import CountDown from './CountDown'
+import { connect } from "react-redux";
+import { setIsCounting } from "../../store/actions/actions"
+import { store } from '../../store/store';
 
-export default function Timer({startTime, alarmSound}) {
+const Timer = ({isCounting}) => {
 
-    const [isCounting, setIsCounting] = useState(false);
     const label = useRef(null)
 
     const handleCountingClick = () => {
-      setIsCounting(prevState => !prevState)
+      store.dispatch(setIsCounting(!isCounting))
       label.current.focus() 
     }
 
@@ -20,15 +22,22 @@ export default function Timer({startTime, alarmSound}) {
           ref={label} type="text" 
           placeholder="Add label"></input>
         <CountDown 
-          isCounting={isCounting} 
-          setIsCounting={setIsCounting} 
-          startTime={startTime} 
           label={label} 
-          alarmSound={alarmSound}/>
+          />
         <i 
           onClick={handleCountingClick} 
           className={isCounting ? "timer-start far fa-pause-circle" : "timer-start far fa-play-circle"}></i>
       </div>
     );
   }
+  
+  const mapStateToProps = (state) => {
+    return {
+      isCounting: state.isCounting
+    }
+  }
+  
+  const mapDispatchToProps = { setIsCounting }; 
+
+  export default connect(mapStateToProps, mapDispatchToProps)(Timer)
   

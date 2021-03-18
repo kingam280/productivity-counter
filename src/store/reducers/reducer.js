@@ -1,7 +1,7 @@
 import * as types from '../actions/types'
 
 const initialState = {
-    focusTime: 50,
+    focusTime: 40,
     alarmSound: 'alarm-sound',
     isCounting: false
 }
@@ -20,7 +20,7 @@ export const reducer = (state = initialState, action) => {
             }
         case types.IS_COUNTING:
             return {
-                ...state, 
+                ...state,
                 isCounting: action.isCounting
             }
         default:
