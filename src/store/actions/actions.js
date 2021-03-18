@@ -1,16 +1,16 @@
 import * as types from './types'
 
-export const changeFocusTime = (time) => ({
+export const changeFocusTime = (focusTime) => ({
     type: types.CHANGE_FOCUS_TIME,
-    time
+    focusTime
 })
 
-export const changeAlarmSound = (sound) => ({
+export const changeAlarmSound = (alarmSound) => ({
     type: types.CHANGE_ALARM_SOUND,
-    sound
+    alarmSound
 })
 
-export const isCounting = (counting) => ({
+export const setIsCounting = (isCounting) => ({
     type: types.IS_COUNTING,
-    counting
+    isCounting
 })
