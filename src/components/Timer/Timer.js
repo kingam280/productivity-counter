@@ -33,7 +33,7 @@ const Timer = ({isCounting}) => {
   
   const mapStateToProps = (state) => {
     return {
-      isCounting: state.isCounting
+      isCounting: state.counter.isCounting
     }
   }
   

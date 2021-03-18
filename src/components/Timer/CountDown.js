@@ -66,9 +66,9 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound }) 
 
 const mapStateToProps = (state) => {
   return {
-    focusTime: state.focusTime,
-    alarmSound: state.alarmSound,
-    isCounting: state.isCounting
+    focusTime: state.settings.focusTime,
+    alarmSound: state.settings.alarmSound,
+    isCounting: state.counter.isCounting
   }
 }
 

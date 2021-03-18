@@ -1,6 +1,6 @@
 import React, {useRef} from 'react'
 import { connect } from "react-redux";
-import { changeFocusTime, changeAlarmSound } from "../../store/actions/actions"
+import { changeFocusTime } from "../../store/actions/actions"
 import { store } from '../../store/store';
 
 const FocusTimeSlider = ({changeFocusTime, focusTime}) => {
@@ -29,7 +29,7 @@ const FocusTimeSlider = ({changeFocusTime, focusTime}) => {
 
 const mapStateToProps = (state) => {
   return {
-    focusTime: state.focusTime,
+    focusTime: state.settings.focusTime,
   }
 }
 

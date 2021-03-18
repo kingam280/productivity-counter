@@ -28,7 +28,7 @@ const SoundInput = ({changeAlarmSound, alarmSound}) => {
 
 const mapStateToProps = (state) => {
     return {
-      alarmSound: state.alarmSound,
+      alarmSound: state.settings.alarmSound,
     }
   }
   
