@@ -1,29 +1,33 @@
 import {useEffect, useState, useCallback} from 'react'
 import axios from '../config/axios'
 
-const useStats = (id) => {
+const useStats = (userId) => {
     const [records, setRecords] = useState([])
     const [loading, setLoading] = useState(false)
     
-    const getRecordsFromDatabase = useCallback(async () => {
-        setLoading(prev => !prev)
-        await axios
-          .get(`/${id}.json`)
-          .then(res => res.data)
-          .then(data => {
-            for (let record in data) {
-              setRecords(prev => Array(data[record]).concat(prev))
-            }
-            setLoading(prev => !prev)
-        })
-    }, [id])
+    const getRecords = useCallback(async () => {
+        
+        if (userId) {
+          setLoading(prev => !prev)
+          await axios
+            .get(`/${userId}.json`)
+            .then(res => res.data)
+            .then(data => {
+              for (let record in data) {
+                setRecords(prev => Array(data[record]).concat(prev))
+              }
+              setLoading(prev => !prev)
+            })
+        } else {
+          const data = JSON.parse(localStorage.getItem('data')) || []
+          setRecords(data)
+        }
+        
+    }, [userId])
 
     useEffect(() => {
-      if(id) {
-        getRecordsFromDatabase()
-      }
-        
-    }, [getRecordsFromDatabase, id])
+        getRecords()       
+    }, [getRecords])
 
     return {records, loading}
 }
