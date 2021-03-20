@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext} from 'react';
-import addRecordToDatabase from '../../utils/addRecordToDatabes';
+import saveData from '../../utils/saveData'
 import setSound from '../../utils/setSound';
 import { AuthContext } from '../../contexts/Auth'
 import { connect } from "react-redux";
@@ -43,7 +43,7 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound }) 
               timeLeft: focusTime * 1000 * 60,
             }))
             const id = user
-            addRecordToDatabase(focusTime, label.current.value, id)
+            saveData(id, focusTime, label.current.value)
             label.current.value = null
             const sound = new Audio(setSound(alarmSound))
             sound.play()

@@ -31,6 +31,7 @@ const LogComponent = ({type}) => {
                 var user = userCredential.user;
                 setUser(user.uid)
                 localStorage.setItem('userId', user.uid)
+                localStorage.setItem('data', '')
                 history.push('/timer')
             })
             .catch((error) => {
@@ -42,7 +43,6 @@ const LogComponent = ({type}) => {
         } else {
             firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
             .then((userCredential) => {
-                var user = userCredential.user;
                 history.push('/login')
             })
             .catch((error) => {
