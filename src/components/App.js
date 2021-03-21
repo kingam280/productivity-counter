@@ -25,16 +25,10 @@ function App() {
           <TopPanel />
           <Switch>
             <Route exact path="/">
-              <Timer 
-                startTime={focusTime}
-                sound={alarmSound}
-              />
+              <Timer />
             </Route>
             <Route path="/timer">
-              <Timer 
-                startTime={focusTime}
-                alarmSound={alarmSound}
-              />
+              <Timer />
             </Route>
             <Route path="/stats">
               <Stats />

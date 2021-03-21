@@ -1,16 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
 
-
-export default function Menu() {
+function Menu({isCounting}) {
     
     return (
 
         <>
             <Link to="/timer" className="menu-item">Timer</Link>
-            <Link to="/stats" className="menu-item">Stats</Link>
-            <Link to="/settings" className="menu-item">Settings</Link>
+            <Link to={isCounting ? null : "/stats"} className={isCounting ? "menu-item menu-inactive" : "menu-item"}>Stats</Link>
+            <Link to={isCounting ? null : "/settings"} className={isCounting ? "menu-item menu-inactive" : "menu-item"}>Settings</Link>
         </>
 
     );
   }
+
+const mapStateToProps = (state) => {
+    return {
+      isCounting: state.counter.isCounting
+    }
+}
+  
+export default connect(mapStateToProps, {})(Menu)
