@@ -1,7 +1,7 @@
 import * as types from '../actions/types'
 
 const initialState = {
-    focusTime: 40,
+    focusTime: 50,
     alarmSound: 'alarm-sound',
 }
 

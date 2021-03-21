@@ -13,8 +13,8 @@ const saveData = (userId, startTime, label) => {
             .then(res => console.log('Successfully added to database'))
             .catch(error => console.log(error))
     } else {
-        const array = JSON.parse(localStorage.getItem(data)) || []
-        array.push(data)
+        const array = JSON.parse(localStorage.getItem('data')) || []
+        array.unshift(data)
         localStorage.setItem('data', JSON.stringify(array))
     }
 }

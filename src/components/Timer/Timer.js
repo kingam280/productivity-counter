@@ -6,7 +6,6 @@ import { setIsCounting } from "../../store/actions/actions"
 import { store } from '../../store/store';
 
 const Timer = ({isCounting}) => {
-
     const label = useRef(null)
 
     const handleCountingClick = () => {
