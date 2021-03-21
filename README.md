@@ -21,6 +21,7 @@ Productivity Counter was designed to track your daily productivity. With simple 
 - CSS
 - Java Script ES6
 - React (version 17.0.1)
+- Redux (version 4.0.5)
 - Axios (version 6.14.8)
 - Firebase (version 8.2.10)
 - Jest (version 5.11.9)
@@ -39,13 +40,13 @@ Use `npm run test` to run tests.
 
 - signing up ang logging in implemented with Firebase Authentiaction
 - timer section with countdown timer and possibility to add label
-- saving sessions to Firebase Realtime Database
+- saving sessions to Firebase Realtime Database for logged users
+- save sessions to local storage for not logged users
 - stats section for logged users which shows latest sessions
 - settings with possibility to set focus time and alarm sound
 
 To do:
 
-- save sessions to local storage for nost logged users
 - charts in stats section
 - tests
 
