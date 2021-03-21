@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import Record from './Record'
 import Loading from '../Loading/Loading'
+import StatsOverview from './StatsOverview'
 import './Stats.css';
 import useStats from '../../utils/useStats'
 import { AuthContext } from '../../contexts/Auth'
@@ -45,6 +46,8 @@ export default function Stats() {
     return (
       <div className="stats container">
         <h2>Statistics</h2>
+        <StatsOverview records={records}/>
+        <h3>Latest sessions</h3>
         {displayTable()}
       </div>
     );

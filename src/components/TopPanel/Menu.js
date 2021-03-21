@@ -8,8 +8,8 @@ function Menu({isCounting}) {
 
         <>
             <Link to="/timer" className="menu-item">Timer</Link>
-            <Link to={isCounting ? null : "/stats"} className={isCounting ? "menu-item menu-inactive" : "menu-item"}>Stats</Link>
-            <Link to={isCounting ? null : "/settings"} className={isCounting ? "menu-item menu-inactive" : "menu-item"}>Settings</Link>
+            <Link to={isCounting ? "/timer" : "/stats"} className={isCounting ? "menu-item menu-inactive" : "menu-item"}>Stats</Link>
+            <Link to={isCounting ? "/timer" : "/settings"} className={isCounting ? "menu-item menu-inactive" : "menu-item"}>Settings</Link>
         </>
 
     );

@@ -22,3 +22,27 @@ td {
 
   line-height: 1.5;
 }
+
+.stats-overview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stats-overview > div {
+  flex-basis: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  padding: 2.5%;
+  margin: 1%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 2px var(--second-color);
+}
+
+.stats-overview > div > p {
+  width: 100%;
+  text-align: center;
+  padding: 2.5%;
+}
