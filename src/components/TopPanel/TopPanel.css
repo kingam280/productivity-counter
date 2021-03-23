@@ -21,6 +21,7 @@
 
 .log-panel > p {
   width: 50%;
+  align-self: center;
 }
 
 .log-panel > button {
@@ -63,12 +64,6 @@
 
 @media (min-width: 568px) {
   .menu-item {
-    height: 90%;
-  }
-}
-
-@media (min-width: 1025px) {
-  .menu-item {
-    height: 80%;
+    height: 60%;
   }
 }

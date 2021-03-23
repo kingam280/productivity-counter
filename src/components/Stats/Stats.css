@@ -28,9 +28,10 @@ td {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  padding-bottom: 5%;
 }
 
-.stats-overview > div {
+.stats-item {
   flex-basis: 30%;
   display: flex;
   flex-wrap: wrap;
@@ -41,8 +42,20 @@ td {
   box-shadow: 0 0 10px 2px var(--second-color);
 }
 
-.stats-overview > div > p {
+.stats-item > p {
   width: 100%;
   text-align: center;
   padding: 2.5%;
+}
+
+@media (min-width: 568px) {
+}
+
+@media (min-width: 1025px) {
+  .stats-overview {
+    padding-bottom: 2.5% 0;
+  }
+  .stats-item {
+    flex-basis: 25%;
+  }
 }

@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import { changeFocusTime } from "../../store/actions/actions"
 import { store } from '../../store/store';
 
+
+
 const FocusTimeSlider = ({changeFocusTime, focusTime}) => {
     const focus = useRef(focusTime)
+  console.log(`${100/11}%`)
     return (
         <>
         <h3>Focus time</h3>
@@ -20,6 +23,7 @@ const FocusTimeSlider = ({changeFocusTime, focusTime}) => {
             value={focusTime}
             onChange={() => store.dispatch(changeFocusTime(focus.current.value))}
           />
+          <label className="slider-label-top" style={{left: `${1 + (focusTime/5 - 1) * (98/11)}%`}}><p>{focusTime}</p></label>
           <p className="slider-label">5min</p>
           <p className="slider-label">60min</p>
         </div>

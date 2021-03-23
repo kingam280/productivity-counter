@@ -57,17 +57,17 @@ const StatsOverview = ({records}) => {
     },[records])
 
     return (
-        <div class="stats-overview">
+        <div className="stats-overview">
             <h3>Overview</h3>
-            <div className="today">
+            <div className="stats-item">
                 {records.length > 0 ? <TimeDisplay time={todayTime} /> : <p>-</p>}
                 <p>Today</p>
             </div>
-            <div className="week">
+            <div className="stats-item">
                 {records.length > 0 ? <TimeDisplay time={weekTime} /> : <p>-</p>}
                 <p>Week</p>
             </div>
-            <div className="month">
+            <div className="stats-item">
                 {records.length > 0 ? <TimeDisplay time={monthTime} /> : <p>-</p>}
                 <p>Month</p>
             </div>

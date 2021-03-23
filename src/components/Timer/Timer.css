@@ -39,6 +39,14 @@
   margin: 0 auto;
 }
 
+@media (min-width: 1025px) {
+  .timer {
+    width: 300px;
+    height: 300px;
+    border-width: 15px;
+  }
+}
+
 @keyframes timer-animation {
   0% {
     transform: scale(1);

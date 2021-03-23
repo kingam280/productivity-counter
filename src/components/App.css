@@ -22,6 +22,7 @@ h2 {
 h3 {
   width: 90%;
   margin: 0 auto;
+  padding: 5% 0;
   font-size: 18px;
 }
 
@@ -31,18 +32,20 @@ button {
 
 @media (min-width: 568px) {
   .app {
-    margin-top: 15vh;
+    margin-top: 12vh;
   }
   .container {
-    min-height: 75vh;
+    min-height: 78vh;
     width: 70%;
     margin: 0 auto;
   }
   h2 {
+    padding: 5% 0;
     font-size: 28px;
   }
 
   h3 {
+    padding: 2.5% 0;
     font-size: 22px;
   }
   button {
