@@ -30,6 +30,9 @@ Productivity Counter was designed to track your daily productivity. With simple 
 
 Live version of app ia available here: https://kingam280.github.io/productivity-counter/
 
+Test user e-mail: test@test.pl
+Test user password: test1234
+
 ## Setup
 
 Clone this repo to your desktop. Run `npm install` to install all the dependencies. Use `npm start` to open the project.
