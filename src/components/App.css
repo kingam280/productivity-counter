@@ -27,6 +27,8 @@ h3 {
 }
 
 button {
+  background-color: var(--second-color);
+  padding: 5px;
   cursor: pointer;
 }
 

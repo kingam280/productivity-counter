@@ -1,7 +1,12 @@
+.latest-sessions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 table {
-  width: 95%;
-  margin: 0 auto;
-  padding: 5px;
+  width: 100%;
+  height: 170px;
+  padding: 5px 2.5%;
 }
 
 tr,
@@ -48,6 +53,12 @@ td {
   padding: 2.5%;
 }
 
+.go-to {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+}
+
 @media (min-width: 568px) {
 }
 
@@ -57,5 +68,9 @@ td {
   }
   .stats-item {
     flex-basis: 25%;
+  }
+  .go-to {
+    width: 35px;
+    height: 35px;
   }
 }

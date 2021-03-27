@@ -31,6 +31,7 @@
   /* margin: calc(15px / 2); */
   border-radius: 50%;
   background-color: var(--main-color);
+  cursor: pointer;
 }
 
 .slider-label {
