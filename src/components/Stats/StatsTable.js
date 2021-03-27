@@ -5,7 +5,8 @@ import Loading from '../Loading/Loading'
 const reducer = (state, action) => {
   switch (action.type) {
     case 'next':
-      if(state.stop >= action.length) return state
+      console.log(state.stop, action.length)
+      if(state.stop >= action.length - 1) return state
       return {start: state.start + 5, stop: state.stop + 5};
     case 'prev':
       if (state.start === 0) return state

@@ -19,7 +19,6 @@
 .log-form > button {
   display: block;
   margin: 10px auto;
-  padding: 5px;
   justify-self: center;
   width: 20%;
 }

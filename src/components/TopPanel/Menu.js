@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 
-function Menu({isCounting}) {
+function Menu({isDuringCounting}) {
     
     return (
-
         <>
             <Link to="/timer" className="menu-item">Timer</Link>
-            <Link to={isCounting ? "/timer" : "/stats"} className={isCounting ? "menu-item menu-inactive" : "menu-item"}>Stats</Link>
-            <Link to={isCounting ? "/timer" : "/settings"} className={isCounting ? "menu-item menu-inactive" : "menu-item"}>Settings</Link>
+            <Link to={isDuringCounting ? "/timer" : "/stats"} className={isDuringCounting ? "menu-item menu-inactive" : "menu-item"}>Stats</Link>
+            <Link to={isDuringCounting ? "/timer" : "/settings"} className={isDuringCounting ? "menu-item menu-inactive" : "menu-item"}>Settings</Link>
         </>
 
     );
@@ -17,8 +16,8 @@ function Menu({isCounting}) {
 
 const mapStateToProps = (state) => {
     return {
-      isCounting: state.counter.isCounting
+      isDuringCounting: state.counter.isDuringCounting
     }
 }
   
-export default connect(mapStateToProps, {})(Menu)
+export default connect(mapStateToProps, null)(Menu)

@@ -11,6 +11,11 @@ export const changeAlarmSound = (alarmSound) => ({
 })
 
 export const setIsCounting = (isCounting) => ({
-    type: types.IS_COUNTING,
+    type: types.SET_IS_COUNTING,
     isCounting
+})
+
+export const setIsDuringCounting = (isDuringCounting) => ({
+    type: types.SET_IS_DURING_COUNTING,
+    isDuringCounting
 })

@@ -3,9 +3,9 @@ import saveData from '../../utils/saveData'
 import setSound from '../../utils/setSound';
 import { AuthContext } from '../../contexts/Auth'
 import { connect } from "react-redux";
-import { setIsCounting } from "../../store/actions/actions"
+import { setIsCounting, setIsDuringCounting } from "../../store/actions/actions"
 
-const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound }) => {
+const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound, setIsDuringCounting }) => {
     const [focusTimeMinutes, setFoucsTimeMinutes] = useState(focusTime);
     const [focusTimeSeconds, setFoucsTimeSeconds] = useState(0);
     const [timerInfo, setTimerInfo] = useState({
@@ -38,6 +38,7 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound }) 
         } else if (isCounting && timerInfo.timeLeft < 1000) {
           timer = setTimeout(() => {
             setIsCounting(false)
+            setIsDuringCounting(false)
             setTimerInfo(prev => ({
               ...prev,
               timeLeft: focusTime * 1000 * 60,
@@ -54,7 +55,7 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound }) 
         setFoucsTimeSeconds(Math.floor((timerInfo.timeLeft / 1000) % 60))
   
         return () => clearInterval(timer)
-      }, [isCounting, timerInfo, alarmSound, focusTime, label, setIsCounting, user])
+      }, [isCounting, timerInfo, alarmSound, focusTime, label, setIsCounting, setIsDuringCounting, user])
       
     return (
         <div className="timer" style={isCounting ? {animationPlayState: "running"} : {animationPlayState: "paused"}}>
@@ -73,7 +74,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({ 
-  setIsCounting: state => dispatch(setIsCounting(state)) 
+  setIsCounting: state => dispatch(setIsCounting(state)),
+  setIsDuringCounting: state => dispatch(setIsDuringCounting(state))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountDown)

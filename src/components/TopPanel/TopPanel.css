@@ -26,7 +26,6 @@
 
 .log-panel > button {
   display: block;
-  padding: 5px;
   transition: 0.2s;
 }
 
