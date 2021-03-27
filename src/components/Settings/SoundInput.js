@@ -2,7 +2,6 @@ import React from 'react'
 import setSound from '../../utils/setSound'
 import { connect } from "react-redux";
 import { changeAlarmSound } from "../../store/actions/actions"
-import { store } from '../../store/store';
 
 const SoundInput = ({changeAlarmSound, alarmSound}) => {
 
@@ -10,7 +9,7 @@ const SoundInput = ({changeAlarmSound, alarmSound}) => {
         let alarmSound = e.target.value
         const soundPath = setSound(alarmSound)
         const sound = new Audio(soundPath)
-        store.dispatch(changeAlarmSound(alarmSound))
+        changeAlarmSound(alarmSound)
         sound.play()
     }
     return (
@@ -32,6 +31,8 @@ const mapStateToProps = (state) => {
     }
   }
   
-const mapDispatchToProps = { changeAlarmSound };
+const mapDispatchToProps = dispatch => ({ 
+    changeAlarmSound: sound => dispatch(changeAlarmSound(sound))
+});
   
 export default connect(mapStateToProps, mapDispatchToProps)(SoundInput)

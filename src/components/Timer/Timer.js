@@ -3,13 +3,12 @@ import './Timer.css';
 import CountDown from './CountDown'
 import { connect } from "react-redux";
 import { setIsCounting } from "../../store/actions/actions"
-import { store } from '../../store/store';
 
-const Timer = ({isCounting}) => {
+const Timer = ({ isCounting, setIsCounting }) => {
     const label = useRef(null)
 
     const handleCountingClick = () => {
-      store.dispatch(setIsCounting(!isCounting))
+      setIsCounting(!isCounting)
       label.current.focus() 
     }
 
@@ -30,13 +29,15 @@ const Timer = ({isCounting}) => {
     );
   }
   
-  const mapStateToProps = (state) => {
-    return {
-      isCounting: state.counter.isCounting
-    }
+const mapStateToProps = (state) => {
+  return {
+    isCounting: state.counter.isCounting
   }
-  
-  const mapDispatchToProps = { setIsCounting }; 
+}
 
-  export default connect(mapStateToProps, mapDispatchToProps)(Timer)
+const mapDispatchToProps = dispatch => ({ 
+  setIsCounting: state => dispatch(setIsCounting(state)) 
+});
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Timer)
   

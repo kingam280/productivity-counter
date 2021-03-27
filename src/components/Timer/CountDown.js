@@ -4,7 +4,6 @@ import setSound from '../../utils/setSound';
 import { AuthContext } from '../../contexts/Auth'
 import { connect } from "react-redux";
 import { setIsCounting } from "../../store/actions/actions"
-import { store } from '../../store/store';
 
 const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound }) => {
     const [focusTimeMinutes, setFoucsTimeMinutes] = useState(focusTime);
@@ -27,6 +26,7 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound }) 
               startDate: Date.now() 
             }))
           }, 100);
+
         } else if (!isCounting) {
           timer = setTimeout(() => {
             setTimerInfo(prev => ({
@@ -37,7 +37,7 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound }) 
           
         } else if (isCounting && timerInfo.timeLeft < 1000) {
           timer = setTimeout(() => {
-            store.dispatch(setIsCounting(false))
+            setIsCounting(false)
             setTimerInfo(prev => ({
               ...prev,
               timeLeft: focusTime * 1000 * 60,
@@ -72,6 +72,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = { setIsCounting }; // (2)
+const mapDispatchToProps = dispatch => ({ 
+  setIsCounting: state => dispatch(setIsCounting(state)) 
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountDown)
