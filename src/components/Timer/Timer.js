@@ -7,11 +7,17 @@ import { setIsCounting, setIsDuringCounting } from "../../store/actions/actions"
 const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCounting }) => {
     const label = useRef(null)
 
-    const handleCountingClick = () => {
+    const handleStartCountingClick = () => {
       if (!label.current.value || !isDuringCounting) label.current.focus() 
       setIsCounting(!isCounting)
-      setIsDuringCounting(true)
-      
+      if (!isDuringCounting) setIsDuringCounting(true)
+    }
+
+    const handleResetCountingClick = () => {
+      if (!isDuringCounting) return 
+      setIsCounting(false)
+      setIsDuringCounting(false)
+      label.current.value = ""
     }
 
     return (
@@ -22,11 +28,17 @@ const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCountin
           ref={label} type="text" 
           placeholder="Add label"></input>
         <CountDown 
-          label={label} 
-          />
-        <i 
-          onClick={handleCountingClick} 
-          className={isCounting ? "timer-start far fa-pause-circle" : "timer-start far fa-play-circle"}></i>
+          label={label}
+        />
+        <div className="timer-buttons">
+          <i 
+            onClick={handleResetCountingClick}
+            className="timer-reset fas fa-undo"></i>  
+          <i 
+            onClick={handleStartCountingClick} 
+            className={isCounting ? "timer-start far fa-pause-circle" : "timer-start far fa-play-circle"}></i>
+        </div>
+        
       </div>
     );
   }

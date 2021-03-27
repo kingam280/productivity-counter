@@ -57,6 +57,12 @@ td {
   width: 30px;
   height: 30px;
   margin: 0 5px;
+  border: 1px white outset;
+}
+
+.button-inactive {
+  background-color: #bbb;
+  border: inset 1px white;
 }
 
 @media (min-width: 568px) {

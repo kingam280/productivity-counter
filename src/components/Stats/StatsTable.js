@@ -43,8 +43,8 @@ export default function StatsTable({ records, loading }) {
             }) }
           </tbody>
         </table>
-        <button className="go-to" onClick={() => dispatch({type: 'prev'}) }>{`<`}</button>
-        <button className="go-to" onClick={() => dispatch({type: 'next', length: records.length}) }>{`>`}</button>
+        <button className={state.start === 0 ? `go-to button-inactive` : `go-to`} onClick={() => dispatch({type: 'prev'}) }>{`<`}</button>
+        <button className={state.stop >= records.length - 1 ? `go-to button-inactive` : `go-to`} onClick={() => dispatch({type: 'next', length: records.length}) }>{`>`}</button>
         </>
       )
     } else {
