@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 import { setIsCounting, setIsDuringCounting, setTimeLeft } from "../../store/actions/actions"
 
 const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound, setIsDuringCounting,  timeLeft, setTimeLeft }) => {
-    const [focusTimeMinutes, setFocusTimeMinutes] = useState(focusTime);
-    const [focusTimeSeconds, setFocusTimeSeconds] = useState(0);
+    const [focusTimeMinutes, setFocusTimeMinutes] = useState(Math.floor(timeLeft / 1000 / 60));
+    const [focusTimeSeconds, setFocusTimeSeconds] = useState(Math.floor((timeLeft / 1000) % 60));
     const [startDate, setStartDate] = useState(Date.now())
 
     const { user } = useContext(AuthContext)
