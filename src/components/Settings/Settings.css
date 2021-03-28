@@ -22,13 +22,24 @@
 }
 
 .slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  -webkit-appearance: none;
   width: 15px;
   height: 15px;
-  /* margin: calc(15px / 2); */
+  border-radius: 50%;
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+
+.slider-input::-moz-range-thumb {
+  -moz-appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background-color: var(--main-color);
   cursor: pointer;
