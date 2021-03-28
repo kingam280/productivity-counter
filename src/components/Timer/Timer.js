@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import './Timer.css';
 import CountDown from './CountDown'
 import { connect } from "react-redux";
-import { setIsCounting, setIsDuringCounting } from "../../store/actions/actions"
+import { setIsCounting, setIsDuringCounting, setTimeLeft } from "../../store/actions/actions"
 
-const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCounting }) => {
+const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCounting, focusTime, setTimeLeft }) => {
     const label = useRef(null)
 
     const handleStartCountingClick = () => {
@@ -18,6 +18,7 @@ const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCountin
       setIsCounting(false)
       setIsDuringCounting(false)
       label.current.value = ""
+      setTimeLeft(focusTime * 1000 * 60)
     }
 
     return (
@@ -46,13 +47,15 @@ const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCountin
 const mapStateToProps = (state) => {
   return {
     isCounting: state.counter.isCounting,
-    isDuringCounting: state.counter.isDuringCounting
+    isDuringCounting: state.counter.isDuringCounting,
+    focusTime: state.settings.focusTime
   }
 }
 
 const mapDispatchToProps = dispatch => ({ 
   setIsCounting: state => dispatch(setIsCounting(state)),
-  setIsDuringCounting: state => dispatch(setIsDuringCounting(state))
+  setIsDuringCounting: state => dispatch(setIsDuringCounting(state)),
+  setTimeLeft: state => dispatch(setTimeLeft(state))
 });
   
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)

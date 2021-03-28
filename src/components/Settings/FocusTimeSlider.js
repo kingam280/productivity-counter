@@ -1,9 +1,14 @@
 import React, {useRef} from 'react'
 import { connect } from "react-redux";
-import { changeFocusTime } from "../../store/actions/actions"
+import { changeFocusTime, setTimeLeft } from "../../store/actions/actions"
 
-const FocusTimeSlider = ({changeFocusTime, focusTime}) => {
+const FocusTimeSlider = ({ changeFocusTime, focusTime, setTimeLeft }) => {
     const focus = useRef(focusTime)
+
+    const handleOnChange = () => {
+      changeFocusTime(focus.current.value)
+      setTimeLeft(focus.current.value * 1000 * 60)
+    }
 
     return (
         <>
@@ -18,7 +23,7 @@ const FocusTimeSlider = ({changeFocusTime, focusTime}) => {
             step="5"
             ref={focus}
             value={focusTime}
-            onChange={() => changeFocusTime(focus.current.value)}
+            onChange={handleOnChange}
           />
           <label className="slider-label-top" style={{left: `${1 + (focusTime/5 - 1) * (98/11)}%`}}><p>{focusTime}</p></label>
           <p className="slider-label">5min</p>
@@ -35,7 +40,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({ 
-  changeFocusTime: time => dispatch(changeFocusTime(time)) 
+  changeFocusTime: time => dispatch(changeFocusTime(time)),
+  setTimeLeft: state => dispatch(setTimeLeft(state))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FocusTimeSlider)

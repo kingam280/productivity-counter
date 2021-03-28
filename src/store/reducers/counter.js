@@ -2,7 +2,8 @@ import * as types from '../actions/types'
 
 const initialState = {
     isCounting: false,
-    isDuringCounting: false
+    isDuringCounting: false,
+    timeLeft: 50 * 1000 * 60,
 }
 
 export const counter = (state = initialState, action) => {
@@ -17,6 +18,11 @@ export const counter = (state = initialState, action) => {
                 ...state,
                 isDuringCounting: action.isDuringCounting
             }
+        case types.SET_TIME_LEFT:
+            return {
+                ...state,
+                timeLeft: action.timeLeft
+            } 
         default:
             return state
     }

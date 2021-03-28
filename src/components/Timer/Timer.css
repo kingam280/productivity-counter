@@ -38,16 +38,20 @@
   color: var(--main-color);
 }
 
-.timer-reset {
+.timer-reset,
+.timer-start {
   display: block;
+  cursor: pointer;
+}
+
+.timer-reset {
   font-size: 1rem;
   border: 2px solid var(--main-color);
   border-radius: 50%;
-  padding: 5%;
+  padding: 10px;
 }
 
 .timer-start {
-  display: block;
   width: 3rem;
   font-size: 3rem;
   transform: translateX(50%);
@@ -59,8 +63,9 @@
     height: 300px;
     border-width: 15px;
   }
-  .timer-reset {
-    padding: 2.5%;
+  .timer-start {
+    width: 3.5rem;
+    font-size: 3.5rem;
   }
 }
 
