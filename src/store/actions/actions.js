@@ -71,3 +71,27 @@ export const setTimeLeft = (timeLeft) => ({
     type: types.SET_TIME_LEFT,
     timeLeft: timeLeft
 })
+
+export const saveRecord = (dataToSave) => (dispatch) => { 
+    const {userId, focusTime, label} = dataToSave
+    const data = {
+        label: label || 'no label',
+        timeInMinutes: focusTime,
+        timestamp: Date.now()
+    }
+
+    if (userId) {
+        axios
+            .post(`/${userId}.json`, data)
+            .then(res => {
+                console.log('Successfully added to database')
+                dispatch(fetchStats())
+            })
+            .catch(error => console.log(error))
+    } else {
+        console.log('hej')
+        const array = JSON.parse(localStorage.getItem('data')) || []
+        array.unshift(data)
+        localStorage.setItem('data', JSON.stringify(array))
+    }
+}

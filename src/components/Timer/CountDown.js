@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useContext} from 'react';
-import saveData from '../../utils/saveData'
 import setSound from '../../utils/setSound';
 import { AuthContext } from '../../contexts/Auth'
 import { connect } from "react-redux";
-import { setIsCounting, setIsDuringCounting, setTimeLeft } from "../../store/actions/actions"
+import { setIsCounting, setIsDuringCounting, setTimeLeft, saveRecord } from "../../store/actions/actions"
 
-const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound, setIsDuringCounting,  timeLeft, setTimeLeft }) => {
+const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound, setIsDuringCounting,  timeLeft, setTimeLeft, saveRecord }) => {
     const [focusTimeMinutes, setFocusTimeMinutes] = useState(Math.floor(timeLeft / 1000 / 60));
     const [focusTimeSeconds, setFocusTimeSeconds] = useState(Math.floor((timeLeft / 1000) % 60));
     const [startDate, setStartDate] = useState(Date.now())
@@ -31,7 +30,7 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound, se
             setIsCounting(false)
             setIsDuringCounting(false)
             setTimeLeft(focusTime * 1000 * 60)
-            saveData(user, focusTime, label.current.value)
+            saveRecord({user, focusTime, label: label.current.value})
             label.current.value = null
             const sound = new Audio(setSound(alarmSound))
             sound.play()
@@ -42,7 +41,7 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound, se
         setFocusTimeSeconds(Math.floor((timeLeft / 1000) % 60))
   
         return () => clearInterval(timer)
-      }, [isCounting, alarmSound, focusTime, label, setIsCounting, setIsDuringCounting, user, setFocusTimeMinutes, setFocusTimeSeconds, timeLeft, startDate, setTimeLeft, setStartDate])
+      }, [isCounting, alarmSound, focusTime, label, setIsCounting, setIsDuringCounting, user, setFocusTimeMinutes, setFocusTimeSeconds, timeLeft, startDate, setTimeLeft, setStartDate, saveRecord])
       
     return (
         <div className="timer" style={isCounting ? {animationPlayState: "running"} : {animationPlayState: "paused"}}>
@@ -65,7 +64,7 @@ const mapDispatchToProps = dispatch => ({
   setIsCounting: state => dispatch(setIsCounting(state)),
   setIsDuringCounting: state => dispatch(setIsDuringCounting(state)),
   setTimeLeft: state => dispatch(setTimeLeft(state)),
-
+  saveRecord: state => dispatch(saveRecord(state))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountDown)
