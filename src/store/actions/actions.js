@@ -1,3 +1,4 @@
+import axios from '../../config/axios'
 import * as types from './types'
 
 //SETTINGS
@@ -10,6 +11,47 @@ export const changeFocusTime = (focusTime) => ({
 export const changeAlarmSound = (alarmSound) => ({
     type: types.CHANGE_ALARM_SOUND,
     alarmSound
+})
+
+
+//STATS
+
+export const fetchStats = (userId) => (dispatch) => {
+    dispatch(fetchStatsPending())
+
+    if (userId) {
+        axios
+            .get(`/${userId}.json`)
+            .then(res => res.data)
+            .then(data => {
+                const records = []
+                for (let record in data) {
+                    records.push(data[record])
+                }
+                const sorted = records.sort((a, b) => b.timestamp - a.timestamp)
+                dispatch(fetchStatsFulfilled(sorted))
+            })
+            .catch(err => {
+                dispatch(fetchStatsRejected(err))
+            })
+      } else {
+            const data = JSON.parse(localStorage.getItem('data')) || []
+            dispatch(fetchStatsFulfilled(data))
+      }
+}
+
+export const fetchStatsFulfilled = (data) => ({
+    type: types.FETCH_STATS_FULFILLED,
+    payload: data
+})
+
+export const fetchStatsPending = () => ({
+    type: types.FETCH_STATS_PENDING
+})
+
+export const fetchStatsRejected = (error) => ({
+    type: types.FETCH_STATS_REJECTED,
+    payload: error
 })
 
 
@@ -29,3 +71,27 @@ export const setTimeLeft = (timeLeft) => ({
     type: types.SET_TIME_LEFT,
     timeLeft: timeLeft
 })
+
+export const saveRecord = (dataToSave) => (dispatch) => { 
+    const {userId, focusTime, label} = dataToSave
+    const data = {
+        label: label || 'no label',
+        timeInMinutes: focusTime,
+        timestamp: Date.now()
+    }
+
+    if (userId) {
+        axios
+            .post(`/${userId}.json`, data)
+            .then(res => {
+                console.log('Successfully added to database')
+                dispatch(fetchStats())
+            })
+            .catch(error => console.log(error))
+    } else {
+        console.log('hej')
+        const array = JSON.parse(localStorage.getItem('data')) || []
+        array.unshift(data)
+        localStorage.setItem('data', JSON.stringify(array))
+    }
+}

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import TimeDisplay from './TimeDisplay'
 
+
 const getTimeFromToday = (records) => {
     if (!records) return 0
     const today = new Date().setHours(0,0,0)
@@ -45,7 +46,7 @@ const getTimeFromMonth = (records) => {
     return time
 }
 
-const StatsOverview = ({records}) => {
+const StatsOverview = ({ records }) => {
     const [todayTime, setTodayTime] = useState(0)
     const [weekTime, setWeekTime] = useState(0)
     const [monthTime, setMonthTime] = useState(0)
