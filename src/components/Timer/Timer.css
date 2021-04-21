@@ -1,3 +1,7 @@
+.timer-container {
+  position: relative;
+}
+
 .timer {
   display: flex;
   flex-direction: column;
@@ -55,6 +59,17 @@
   width: 3rem;
   font-size: 3rem;
   transform: translateX(50%);
+}
+
+.add-record-form-label {
+  text-align: right;
+  width: 90%;
+  margin: auto;
+  padding: 10% 5px 5%;
+}
+
+.add-record-form-label > strong {
+  cursor: pointer;
 }
 
 @media (min-width: 1025px) {

@@ -73,11 +73,11 @@ export const setTimeLeft = (timeLeft) => ({
 })
 
 export const saveRecord = (dataToSave) => (dispatch) => { 
-    const {userId, focusTime, label} = dataToSave
+    const {userId, focusTime, label, timestamp} = dataToSave
     const data = {
         label: label || 'no label',
         timeInMinutes: focusTime,
-        timestamp: Date.now()
+        timestamp: timestamp ? timestamp : Date.now()
     }
 
     if (userId) {

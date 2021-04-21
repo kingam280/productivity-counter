@@ -1,11 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import './Timer.css';
 import CountDown from './CountDown'
 import { connect } from "react-redux";
 import { setIsCounting, setIsDuringCounting, setTimeLeft } from "../../store/actions/actions"
+import AddRecordForm from './AddRecordForm/AddRecordForm';
 
 const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCounting, focusTime, setTimeLeft }) => {
     const label = useRef(null)
+    const [isAddRecordFormOpen, setIsAddRecordFormOpen] = useState(false)
 
     const handleStartCountingClick = () => {
       if (!label.current.value || !isDuringCounting) label.current.focus() 
@@ -22,6 +24,7 @@ const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCountin
     }
 
     return (
+      <>
       <div className="timer-container container">
         <h2>Timer</h2>
         <input 
@@ -39,8 +42,11 @@ const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCountin
             onClick={handleStartCountingClick} 
             className={isCounting ? "timer-start far fa-pause-circle" : "timer-start far fa-play-circle"}></i>
         </div>
-        
+        <p className="add-record-form-label">Do you want to add record? Click <strong onClick={() => setIsAddRecordFormOpen(true)}>here</strong></p>
       </div>
+      {isAddRecordFormOpen && <AddRecordForm setIsAddRecordFormOpen={setIsAddRecordFormOpen}/>}
+      
+      </>
     );
   }
   
