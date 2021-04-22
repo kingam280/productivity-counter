@@ -43,6 +43,7 @@ Use `npm run test` to run tests.
 
 - signing up ang logging in implemented with Firebase Authentiaction
 - timer section with countdown timer and possibility to add label
+- form to add record manually
 - saving sessions to Firebase Realtime Database for logged users
 - save sessions to local storage for not logged users
 - stats section for logged users which shows latest sessions
@@ -50,6 +51,7 @@ Use `npm run test` to run tests.
 
 To do:
 
+- reusable labels
 - charts in stats section
 - tests
 
