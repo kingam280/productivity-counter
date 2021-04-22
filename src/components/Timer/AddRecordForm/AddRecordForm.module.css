@@ -14,9 +14,52 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-content: center;
   flex-wrap: wrap;
-  width: 40%;
+  width: 90%;
   background-color: var(--main-color);
   padding: 2.5%;
+}
+
+.inputs,
+.labels {
+  width: 90%;
+  padding: 15px 10px;
+}
+
+.labels {
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.inputs {
+  background-color: var(--second-color);
+}
+
+.submit {
+  padding: 5px 10px;
+  margin: 20px auto 10px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+@media (min-width: 1025px) {
+  .addRecordForm {
+    width: 40%;
+  }
+  .inputs,
+  .labels {
+    width: 70%;
+  }
 }

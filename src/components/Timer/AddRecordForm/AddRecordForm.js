@@ -14,17 +14,17 @@ const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
     })
 
     const handleChange = (e) => {
-        if (e.target.dataset.name === "timestamp") {
+        if (e.target.id === "timestamp") {
             const timestamp = new Date(e.target.value).getTime()
             setForm(prev => ({...prev, timestamp}))
         } else {
-            const key = e.target.dataset.name
+            const key = e.target.id
             setForm(prev => ({...prev, [key]: e.target.value}))
         }
     }
 
     const handleClose = (e) => {
-        if (e.target.dataset.name === "add-record-form-bg") {
+        if (e.target.dataset.name === "enable-close" || e.target.dataset.name === "enable-close") {
             setIsAddRecordFormOpen(false)
         }
     }
@@ -37,13 +37,42 @@ const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
     }
     return(
         <>
-            <div className={styles.formContainer} onClick={handleClose} data-name="add-record-form-bg">
-                <form action="submit" onChange={handleChange} onSubmit={handleSubmit} className={styles.addRecordForm} >
-                    <input type="text" className="text" data-name="label" required/>
-                    <input type="number" min="5"  step="5" className="text" data-name="focusTime" required/>
-                    <input type="date" className="date" data-name="timestamp" required/>
-                    <button>Add record</button>
-                </form>
+            <div className={styles.formContainer} onClick={handleClose} data-name="enable-close">
+                <form 
+                    action="submit" 
+                    onChange={handleChange} 
+                    onSubmit={handleSubmit} 
+                    className={styles.addRecordForm}
+                >
+                    <label htmlFor="label" className={styles.labels}>Label</label>
+                    <input 
+                        type="text" 
+                        className={styles.inputs} 
+                        id="label" 
+                        required
+                    />
+                    <label htmlFor="label" className={styles.labels}>Time in minutes</label>
+                    <input 
+                        type="number" 
+                        min="5"  
+                        step="5" 
+                        className={styles.inputs} 
+                        id="focusTime" 
+                        required
+                    />
+                    <label htmlFor="label" className={styles.labels} >Date</label>
+                    <input 
+                        type="date" 
+                        className={styles.inputs} 
+                        id="timestamp" 
+                        required
+                    />
+                    <button className={styles.submit}>Add record</button>
+                    <i 
+                        className={`fas fa-times-circle ${styles.closeBtn}`} 
+                        data-name="enable-close" 
+                    ></i>
+                </form> 
             </div>
         </>
     )
