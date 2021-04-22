@@ -30,7 +30,7 @@ const CountDown = ({ isCounting, setIsCounting, focusTime, label, alarmSound, se
             setIsCounting(false)
             setIsDuringCounting(false)
             setTimeLeft(focusTime * 1000 * 60)
-            saveRecord({user, focusTime, label: label.current.value})
+            saveRecord({userId: user, focusTime, label: label.current.value})
             label.current.value = null
             const sound = new Audio(setSound(alarmSound))
             sound.play()
