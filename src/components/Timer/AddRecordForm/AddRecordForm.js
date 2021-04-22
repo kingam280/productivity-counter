@@ -15,7 +15,8 @@ const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
 
     const handleChange = (e) => {
         if (e.target.id === "timestamp") {
-            const timestamp = new Date(e.target.value).getTime()
+            const currentTime = new Date()
+            const timestamp = new Date(e.target.value).setHours(currentTime.getHours(), currentTime.getMinutes(), currentTime.getSeconds())
             setForm(prev => ({...prev, timestamp}))
         } else {
             const key = e.target.id
