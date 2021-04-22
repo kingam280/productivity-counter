@@ -36,7 +36,8 @@ export const fetchStats = (userId) => (dispatch) => {
             })
       } else {
             const data = JSON.parse(localStorage.getItem('data')) || []
-            dispatch(fetchStatsFulfilled(data))
+            const sorted = data.sort((a, b) => b.timestamp - a.timestamp)
+            dispatch(fetchStatsFulfilled(sorted))
       }
 }
 
@@ -89,7 +90,6 @@ export const saveRecord = (dataToSave) => (dispatch) => {
             })
             .catch(error => console.log(error))
     } else {
-        console.log('hej')
         const array = JSON.parse(localStorage.getItem('data')) || []
         array.unshift(data)
         localStorage.setItem('data', JSON.stringify(array))
