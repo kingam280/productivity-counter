@@ -61,15 +61,15 @@ const StatsOverview = ({ records }) => {
         <div className="stats-overview">
             <h3>Overview</h3>
             <div className="stats-item">
-                {records.length > 0 ? <TimeDisplay time={todayTime} /> : <p>-</p>}
+                {records ? <TimeDisplay time={todayTime} /> : <p>-</p>}
                 <p>Today</p>
             </div>
             <div className="stats-item">
-                {records.length > 0 ? <TimeDisplay time={weekTime} /> : <p>-</p>}
+                {records ? <TimeDisplay time={weekTime} /> : <p>-</p>}
                 <p>Week</p>
             </div>
             <div className="stats-item">
-                {records.length > 0 ? <TimeDisplay time={monthTime} /> : <p>-</p>}
+                {records ? <TimeDisplay time={monthTime} /> : <p>-</p>}
                 <p>Month</p>
             </div>
         </div>

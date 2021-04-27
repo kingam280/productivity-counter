@@ -16,45 +16,10 @@ export const changeAlarmSound = (alarmSound) => ({
 
 //STATS
 
-export const fetchStats = (userId) => (dispatch) => {
-    dispatch(fetchStatsPending())
-
-    if (userId) {
-        axios
-            .get(`/${userId}.json`)
-            .then(res => res.data)
-            .then(data => {
-                const records = []
-                for (let record in data) {
-                    records.push(data[record])
-                }
-                const sorted = records.sort((a, b) => b.timestamp - a.timestamp)
-                dispatch(fetchStatsFulfilled(sorted))
-            })
-            .catch(err => {
-                dispatch(fetchStatsRejected(err))
-            })
-      } else {
-            const data = JSON.parse(localStorage.getItem('data')) || []
-            const sorted = data.sort((a, b) => b.timestamp - a.timestamp)
-            dispatch(fetchStatsFulfilled(sorted))
-      }
-}
-
-export const fetchStatsFulfilled = (data) => ({
-    type: types.FETCH_STATS_FULFILLED,
+export const setStats = (data) => ({
+    type: types.SET_STATS,
     payload: data
 })
-
-export const fetchStatsPending = () => ({
-    type: types.FETCH_STATS_PENDING
-})
-
-export const fetchStatsRejected = (error) => ({
-    type: types.FETCH_STATS_REJECTED,
-    payload: error
-})
-
 
 //COUNTER
 
@@ -86,7 +51,6 @@ export const saveRecord = (dataToSave) => (dispatch) => {
             .post(`/${userId}.json`, data)
             .then(res => {
                 console.log('Successfully added to database')
-                dispatch(fetchStats())
             })
             .catch(error => console.log(error))
     } else {

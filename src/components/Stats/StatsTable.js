@@ -5,7 +5,6 @@ import Loading from '../Loading/Loading'
 const reducer = (state, action) => {
   switch (action.type) {
     case 'next':
-      console.log(state)
       if(state.stop >= action.length - 1) return state
       return {start: state.start + 5, stop: state.stop + 5};
     case 'prev':
@@ -23,7 +22,7 @@ export default function StatsTable({ records, loading }) {
   });
 
   const displayTable = () => {
-    if (loading) {
+    if (records === null) {
       return <Loading />
     } else if (records.length > 0) {
       return (
