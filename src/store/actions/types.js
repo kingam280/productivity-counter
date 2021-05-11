@@ -7,6 +7,7 @@ export const CHANGE_ALARM_SOUND = 'CHANGE_ALARM_SOUND'
 //STATS
 
 export const SET_STATS = 'SET_STATS'
+export const SET_STATS_OVERALL = 'SET_STATS_OVERALL'
 
 
 //COUNTER

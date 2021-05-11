@@ -21,6 +21,11 @@ export const setStats = (data) => ({
     payload: data
 })
 
+export const setStatsOverall = (data) => ({
+    type: types.SET_STATS_OVERALL,
+    payload: data
+})
+
 //COUNTER
 
 export const setIsCounting = (isCounting) => ({
