@@ -2,11 +2,11 @@ import React from 'react'
 import classes from './DropDownList.module.css'
 
 const ListItem = (props) => {
-    const { data, setIsOpen, setCurrentOption } = props
+    const { data, setIsListOpen, setCurrentOption } = props
 
     const handleClick = () => {
         setCurrentOption(data)
-        setIsOpen(false)
+        setIsListOpen(false)
     }
 
     return(

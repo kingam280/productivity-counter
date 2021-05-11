@@ -25,7 +25,7 @@ const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
     }
 
     const handleClose = (e) => {
-        if (e.target.dataset.name === "enable-close" || e.target.dataset.name === "enable-close") {
+        if (e.target.dataset.name === "enable-close") {
             setIsAddRecordFormOpen(false)
         }
     }
