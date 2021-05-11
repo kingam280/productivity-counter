@@ -4,6 +4,7 @@ import CountDown from './CountDown'
 import { connect } from "react-redux";
 import { setIsCounting, setIsDuringCounting, setTimeLeft } from "../../store/actions/actions"
 import AddRecordForm from './AddRecordForm/AddRecordForm';
+import DropDownListContainer from './DropDownList/DropDownListConatiner';
 
 const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCounting, focusTime, setTimeLeft }) => {
     const label = useRef(null)
@@ -31,6 +32,7 @@ const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCountin
           id="label-input" 
           ref={label} type="text" 
           placeholder="Add label"></input>
+        <DropDownListContainer />
         <CountDown 
           label={label}
         />
