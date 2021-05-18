@@ -21,7 +21,7 @@ export const fetchStats = (userId) => (dispatch) => {
 
     if (userId) {
         axios
-            .get(`/${userId}.json`)
+            .get(`/records/${userId}.json`)
             .then(res => res.data)
             .then(data => {
                 const records = []
@@ -73,6 +73,11 @@ export const setTimeLeft = (timeLeft) => ({
     timeLeft: timeLeft
 })
 
+export const setCurrentLabel = (label) => ({
+    type: types.SET_CURRENT_LABEL,
+    currentLabel: label
+})
+
 export const saveRecord = (dataToSave) => (dispatch) => { 
     const {userId, focusTime, label, timestamp} = dataToSave
     const data = {
@@ -83,7 +88,7 @@ export const saveRecord = (dataToSave) => (dispatch) => {
 
     if (userId) {
         axios
-            .post(`/${userId}.json`, data)
+            .post(`/records/${userId}.json`, data)
             .then(res => {
                 console.log('Successfully added to database')
                 dispatch(fetchStats())

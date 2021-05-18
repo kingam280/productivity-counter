@@ -1,26 +1,24 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './Timer.css';
 import CountDown from './CountDown'
 import { connect } from "react-redux";
-import { setIsCounting, setIsDuringCounting, setTimeLeft } from "../../store/actions/actions"
+import { setCurrentLabel, setIsCounting, setIsDuringCounting, setTimeLeft } from "../../store/actions/actions"
 import AddRecordForm from './AddRecordForm/AddRecordForm';
 import DropDownListContainer from './DropDownList/DropDownListConatiner';
 
-const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCounting, focusTime, setTimeLeft }) => {
-    const label = useRef(null)
-    const [isAddRecordFormOpen, setIsAddRecordFormOpen] = useState(false)
+const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCounting, focusTime, setTimeLeft, currentLabel, setCurrentLabel }) => {
+  const [isAddRecordFormOpen, setIsAddRecordFormOpen] = useState(false)
 
     const handleStartCountingClick = () => {
-      if (!label.current.value || !isDuringCounting) label.current.focus() 
       setIsCounting(!isCounting)
       if (!isDuringCounting) setIsDuringCounting(true)
     }
 
     const handleResetCountingClick = () => {
-      if (!isDuringCounting) return 
+      if (!isDuringCounting && !currentLabel) return
       setIsCounting(false)
       setIsDuringCounting(false)
-      label.current.value = ""
+      setCurrentLabel(null)
       setTimeLeft(focusTime * 1000 * 60)
     }
 
@@ -28,13 +26,9 @@ const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCountin
       <>
       <div className="timer-container container">
         <h2>Timer</h2>
-        <input 
-          id="label-input" 
-          ref={label} type="text" 
-          placeholder="Add label"></input>
         <DropDownListContainer />
         <CountDown 
-          label={label}
+          label={currentLabel}
         />
         <div className="timer-buttons">
           <i 
@@ -56,14 +50,16 @@ const mapStateToProps = (state) => {
   return {
     isCounting: state.counter.isCounting,
     isDuringCounting: state.counter.isDuringCounting,
-    focusTime: state.settings.focusTime
+    focusTime: state.settings.focusTime,
+    currentLabel: state.counter.currentLabel
   }
 }
 
 const mapDispatchToProps = dispatch => ({ 
   setIsCounting: state => dispatch(setIsCounting(state)),
   setIsDuringCounting: state => dispatch(setIsDuringCounting(state)),
-  setTimeLeft: state => dispatch(setTimeLeft(state))
+  setTimeLeft: state => dispatch(setTimeLeft(state)),
+  setCurrentLabel: state => dispatch(setCurrentLabel(state))
 });
   
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)

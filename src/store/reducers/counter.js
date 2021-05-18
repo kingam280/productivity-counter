@@ -6,7 +6,8 @@ const initialState = {
     timeLeft: 50 * 1000 * 60,
     labels: [],
     isLoading: false,
-    isError: false
+    isError: false,
+    currentLabel: null
 }
 
 export const counter = (state = initialState, action) => {
@@ -29,7 +30,12 @@ export const counter = (state = initialState, action) => {
                 ...state,
                 isError: true,
                 isLoading: false
-            } 
+            }
+        case types.SET_CURRENT_LABEL:
+            return {
+                ...state,
+                currentLabel: action.currentLabel
+            }
         case types.SET_IS_COUNTING:
             return {
                 ...state,

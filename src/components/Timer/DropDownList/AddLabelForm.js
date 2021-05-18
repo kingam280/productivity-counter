@@ -17,7 +17,7 @@ const colors = [
     {label: 'Blue grey', color: '#607d8b'},
 ]
 
-const AddLabelForm = ({ setIsFormOpen, options, saveLabel }) => {
+const AddLabelForm = ({ setIsFormOpen, saveLabel }) => {
     const [form, setForm] = useState(colors[0])
     const { user } = useContext(AuthContext)
     

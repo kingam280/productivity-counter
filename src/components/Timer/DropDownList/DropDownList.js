@@ -1,12 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { setCurrentLabel } from '../../../store/actions/actions'
 import classes from './DropDownList.module.css'
 import ListItem from './ListItem'
 
 const DropDownList = (props) => {
-    const { isListOpen, options, setIsListOpen, setIsFormOpen, setCurrentOption } = props
+    const { isListOpen, options, setIsListOpen, setIsFormOpen, setCurrentLabel } = props
 
     const handleClick = () => {
-        setCurrentOption({label: "Add label...", color: null})
+        setCurrentLabel(null)
         setIsListOpen(false)
         setIsFormOpen(true)
     }
@@ -19,4 +21,8 @@ const DropDownList = (props) => {
     )
 }
 
-export default DropDownList
+const mapDispatchToProps = dispatch => ({ 
+    setCurrentLabel: state => dispatch(setCurrentLabel(state))
+  });
+
+export default connect(null, mapDispatchToProps)(DropDownList)
