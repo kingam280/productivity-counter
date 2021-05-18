@@ -4,7 +4,7 @@ import { setCurrentLabel } from '../../../store/actions/actions'
 import classes from './DropDownList.module.css'
 
 const ListItem = (props) => {
-    const { data, setIsListOpen, setCurrentLabel } = props
+    const { data, setIsListOpen, setCurrentLabel, isEditable } = props
 
     const handleClick = () => {
         setCurrentLabel(data)
@@ -14,7 +14,8 @@ const ListItem = (props) => {
     return(
         <div onClick={handleClick} className={classes.listItem}>
             <span className={classes.dot} style={{backgroundColor: data.color}}></span>
-            <p>{data.label}</p> 
+            <p>{data.label}</p>
+            {isEditable && <i className={`${classes.button} fas fa-times`}></i>}
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { AuthContext } from '../../../contexts/Auth'
 import { saveLabel } from '../../../store/actions/actions'
 import styles from '../AddRecordForm/AddRecordForm.module.css'
 
-const colors = [
+export const colors = [
     {label: 'Red', color: '#f44336'},
     {label: 'Pink', color: '#e91e63'},
     {label: 'Indigo', color: '#3f51b5'},
@@ -35,6 +35,7 @@ const AddLabelForm = ({ setIsFormOpen, saveLabel }) => {
     }
 
     const handleSubmit = (e) => {
+        console.log('hej')
         e.preventDefault()
         const data = {...form, userId: user}
         saveLabel(data)
@@ -48,7 +49,7 @@ const AddLabelForm = ({ setIsFormOpen, saveLabel }) => {
                     onChange={handleChange} 
                     onSubmit={handleSubmit} 
                     className={styles.addRecordForm}
-                >
+                >   
                     <label htmlFor="label" className={styles.labels}>Label</label>
                     <input 
                         type="text" 
@@ -64,8 +65,8 @@ const AddLabelForm = ({ setIsFormOpen, saveLabel }) => {
                         value={form.colors}
                         required
                     >
-                        {colors.map(color => <option style={{backgroundColor: color.color, fontSize: '1.5rem'}} value={color.color} ></option>)}
-                    </select>
+                            {colors.map(color => <option style={{backgroundColor: color.color, fontSize: '1.5rem'}} value={color.color} ></option>)}
+                        </select>
                     <button className={styles.submit}>Add label</button>
                     <i 
                         className={`fas fa-times-circle ${styles.closeBtn}`} 

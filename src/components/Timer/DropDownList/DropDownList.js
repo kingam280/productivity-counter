@@ -5,7 +5,7 @@ import classes from './DropDownList.module.css'
 import ListItem from './ListItem'
 
 const DropDownList = (props) => {
-    const { isListOpen, options, setIsListOpen, setIsFormOpen, setCurrentLabel } = props
+    const { isListOpen, options, setIsListOpen, setIsFormOpen, setCurrentLabel, isEditable } = props
 
     const handleClick = () => {
         setCurrentLabel(null)
@@ -15,7 +15,7 @@ const DropDownList = (props) => {
 
     return(
         <div className={classes.list}>
-            <div className={classes.listItem} onClick={handleClick}><span className={classes.dot}>+</span>Add new label</div>
+            {isEditable && <div className={classes.listItem} onClick={handleClick}><span className={classes.dot}>+</span>Add new label</div>}
             {isListOpen && options.map((option, i) => <ListItem data={option} {...props} key={i} />)}
         </div>
     )

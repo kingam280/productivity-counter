@@ -26,7 +26,7 @@ const Timer = ({ isCounting, setIsCounting, isDuringCounting, setIsDuringCountin
       <>
       <div className="timer-container container">
         <h2>Timer</h2>
-        <DropDownListContainer />
+        <DropDownListContainer isEditable={true}/>
         <CountDown 
           label={currentLabel}
         />

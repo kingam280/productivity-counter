@@ -81,7 +81,7 @@ export const setCurrentLabel = (label) => ({
 export const saveRecord = (dataToSave) => (dispatch) => { 
     const {userId, focusTime, label, timestamp} = dataToSave
     const data = {
-        label: label || 'no label',
+        label: label || {label: 'no label', color: null},
         timeInMinutes: focusTime,
         timestamp: timestamp ? timestamp : Date.now()
     }
