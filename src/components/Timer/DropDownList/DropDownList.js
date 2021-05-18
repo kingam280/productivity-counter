@@ -14,7 +14,7 @@ const DropDownList = (props) => {
     return(
         <div className={classes.list}>
             <div className={classes.listItem} onClick={handleClick}><span className={classes.dot}>+</span>Add new label</div>
-            {isListOpen && options.map(option => <ListItem data={option} {...props}/>)}
+            {isListOpen && options.map((option, i) => <ListItem data={option} {...props} key={i} />)}
         </div>
     )
 }

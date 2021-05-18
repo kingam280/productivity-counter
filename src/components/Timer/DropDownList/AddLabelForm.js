@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { connect } from 'react-redux'
+import { AuthContext } from '../../../contexts/Auth'
+import { saveLabel } from '../../../store/actions/actions'
 import styles from '../AddRecordForm/AddRecordForm.module.css'
 
 const colors = [
@@ -14,8 +17,9 @@ const colors = [
     {label: 'Blue grey', color: '#607d8b'},
 ]
 
-const AddLabelForm = ({ setIsFormOpen, options }) => {
+const AddLabelForm = ({ setIsFormOpen, options, saveLabel }) => {
     const [form, setForm] = useState(colors[0])
+    const { user } = useContext(AuthContext)
     
     const handleChange = (e) => {
         setForm(prev=> ({
@@ -32,7 +36,8 @@ const AddLabelForm = ({ setIsFormOpen, options }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        options.push(form)
+        const data = {...form, userId: user}
+        saveLabel(data)
         setIsFormOpen(false)
     }
 
@@ -71,4 +76,9 @@ const AddLabelForm = ({ setIsFormOpen, options }) => {
     )
 }
 
-export default AddLabelForm
+const mapDispatchToProps = dispatch => ({ 
+    saveLabel: state => dispatch(saveLabel(state))
+  });
+  
+
+export default connect(null, mapDispatchToProps)(AddLabelForm)
