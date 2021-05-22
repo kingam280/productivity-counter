@@ -32,6 +32,7 @@ const LogComponent = ({type}) => {
                 setUser(user.uid)
                 localStorage.setItem('userId', user.uid)
                 localStorage.removeItem('data')
+                localStorage.removeItem('labels')
                 history.push('/timer')
             })
             .catch((error) => {

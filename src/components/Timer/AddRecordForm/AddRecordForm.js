@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react'
 import { connect } from "react-redux";
-import { saveRecord } from "../../../store/actions/actions"
+import { saveRecord, setCurrentLabel } from "../../../store/actions/actions"
 import { AuthContext } from '../../../contexts/Auth'
 import styles from './AddRecordForm.module.css'
+import DropDownListConatiner from '../DropDownList/DropDownListConatiner';
 
-const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
+const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen, currentLabel, setCurrentLabel }) => {
     const { user } = useContext(AuthContext)
     
     const [form, setForm] = useState({
         timestamp: null,
-        label: null,
         focusTime: null
     })
 
@@ -25,15 +25,16 @@ const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
     }
 
     const handleClose = (e) => {
-        if (e.target.dataset.name === "enable-close" || e.target.dataset.name === "enable-close") {
+        if (e.target.dataset.name === "enable-close") {
             setIsAddRecordFormOpen(false)
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const dataToSave = {...form, userId: user}
+        const dataToSave = {...form, label: currentLabel, userId: user}
         saveRecord(dataToSave)
+        setCurrentLabel(null)
         setIsAddRecordFormOpen(false)
     }
     return(
@@ -44,14 +45,9 @@ const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
                     onChange={handleChange} 
                     onSubmit={handleSubmit} 
                     className={styles.addRecordForm}
-                >
+                >  
                     <label htmlFor="label" className={styles.labels}>Label</label>
-                    <input 
-                        type="text" 
-                        className={styles.inputs} 
-                        id="label" 
-                        required
-                    />
+                    <DropDownListConatiner isEditable={false}/>
                     <label htmlFor="label" className={styles.labels}>Time in minutes</label>
                     <input 
                         type="number" 
@@ -69,6 +65,7 @@ const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
                         required
                     />
                     <button className={styles.submit}>Add record</button>
+
                     <i 
                         className={`fas fa-times-circle ${styles.closeBtn}`} 
                         data-name="enable-close" 
@@ -79,8 +76,15 @@ const AddRecordForm = ({ saveRecord, setIsAddRecordFormOpen }) => {
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+      currentLabel: state.counter.currentLabel
+    }
+  }
+
 const mapDispatchToProps = dispatch => ({ 
-    saveRecord: state => dispatch(saveRecord(state))
+    saveRecord: state => dispatch(saveRecord(state)),
+    setCurrentLabel: state => dispatch(setCurrentLabel(state))
   });
 
-export default connect(null, mapDispatchToProps)(AddRecordForm)
+export default connect(mapStateToProps, mapDispatchToProps)(AddRecordForm)

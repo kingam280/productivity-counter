@@ -9,7 +9,7 @@ const Record = ({timestamp, label, timeInMinutes}) => {
     return (
         <tr>
             <td>{day}/{month}/{year}</td>
-            <td>{label}</td>
+            <td>{label.label}</td>
             <td>{timeInMinutes} min</td>
           </tr>
     )
