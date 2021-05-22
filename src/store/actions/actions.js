@@ -110,7 +110,7 @@ export const fetchLabels = (userId) => (dispatch) => {
             .then(data => {
                 const records = []
                 for (let record in data) {
-                    
+                    data[record].id = record
                     records.push(data[record])
                 }
                 dispatch(fetchLabelsFulfilled(records))
@@ -158,5 +158,26 @@ export const saveLabel = (dataToSave) => (dispatch) => {
         array.push(data)
         localStorage.setItem('labels', JSON.stringify(array))
         dispatch(fetchLabels(userId))
+    }
+}
+
+
+export const deleteLabel = (dataToDelete) => (dispatch) => { 
+    const {data, user} = dataToDelete
+    
+    if (user) {
+        axios
+            .delete(`/labels/${user}/${data.id}.json`)
+            .then(res => {
+                console.log('Successfully deleted')
+                dispatch(fetchLabels(user))
+            })
+            .catch(error => console.log(error))
+    } else {
+        const array = JSON.parse(localStorage.getItem('labels')) || []
+        const index = array.findIndex(element => element.label === data.label && element.color === data.color)
+        const newArray = array.filter((el, i) => i !== index)
+        localStorage.setItem('labels', JSON.stringify(newArray))
+        dispatch(fetchLabels(user))
     }
 }

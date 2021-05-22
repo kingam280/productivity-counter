@@ -35,7 +35,6 @@ const AddLabelForm = ({ setIsFormOpen, saveLabel }) => {
     }
 
     const handleSubmit = (e) => {
-        console.log('hej')
         e.preventDefault()
         const data = {...form, userId: user}
         saveLabel(data)
