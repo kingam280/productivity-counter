@@ -12,7 +12,7 @@ const Stats = ({ records, setStats}) => {
     
   useEffect(() => {
     if (user) {
-      const userData = firebase.database().ref(`${user}`)
+      const userData = firebase.database().ref(`/records/${user}`)
       userData.on('value', (data) => {
         const records = []
         for(let el in data.val()) {

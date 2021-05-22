@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setStatsOverall } from '../../store/actions/actions'
 import TimeDisplay from './TimeDisplay'

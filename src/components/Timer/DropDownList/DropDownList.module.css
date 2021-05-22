@@ -1,0 +1,60 @@
+.input {
+  position: relative;
+  width: 250px;
+  padding: 10px;
+  border: 1px solid var(--second-color);
+  background-color: white;
+  margin: 0 auto;
+}
+
+.list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 5px;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: scroll;
+  animation: onEnter 0.2s both linear;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  padding: 5px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+}
+
+.listItem {
+  position: relative;
+  padding: 10px;
+  background-color: white;
+  border-bottom: 1px solid var(--second-color);
+  cursor: pointer;
+}
+
+.listItem:hover {
+  background-color: var(--second-color);
+}
+
+.dot {
+  display: flex;
+  justify-content: center;
+  float: left;
+  margin: 0 10px 2px 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+@keyframes onEnter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
