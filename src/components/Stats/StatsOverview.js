@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { setStatsOverall } from '../../store/actions/actions'
 import TimeDisplay from './TimeDisplay'
 
 
@@ -46,34 +48,44 @@ const getTimeFromMonth = (records) => {
     return time
 }
 
-const StatsOverview = ({ records }) => {
-    const [todayTime, setTodayTime] = useState(0)
-    const [weekTime, setWeekTime] = useState(0)
-    const [monthTime, setMonthTime] = useState(0)
+const StatsOverview = ({ records, statsOverall, setStatsOverall }) => {
 
-    useEffect(() =>{
-        setTodayTime(getTimeFromToday(records));
-        setMonthTime(getTimeFromMonth(records))
-        setWeekTime(getTimeFromWeek(records))
-    },[records])
+    useEffect(() => {
+        const today = getTimeFromToday(records)
+        const week = getTimeFromWeek(records)
+        const month = getTimeFromMonth(records)
+            
+        setStatsOverall({today, week, month})
+        
+    }, [records, setStatsOverall])
 
     return (
         <div className="stats-overview">
             <h3>Overview</h3>
             <div className="stats-item">
-                {records.length > 0 ? <TimeDisplay time={todayTime} /> : <p>-</p>}
+                {records ? <TimeDisplay time={statsOverall.today} /> : <p>-</p>}
                 <p>Today</p>
             </div>
             <div className="stats-item">
-                {records.length > 0 ? <TimeDisplay time={weekTime} /> : <p>-</p>}
+                {records ? <TimeDisplay time={statsOverall.week} /> : <p>-</p>}
                 <p>Week</p>
             </div>
             <div className="stats-item">
-                {records.length > 0 ? <TimeDisplay time={monthTime} /> : <p>-</p>}
+                {records ? <TimeDisplay time={statsOverall.month} /> : <p>-</p>}
                 <p>Month</p>
             </div>
         </div>
     )
 }
 
-export default StatsOverview
+const mapStateToProps = (state) => {
+    return {
+      statsOverall: state.stats.statsOverall
+    }
+}
+
+const mapDispatchToProps = dispatch => ({ 
+    setStatsOverall: (records) => dispatch(setStatsOverall(records))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StatsOverview);

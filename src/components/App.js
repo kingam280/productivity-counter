@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   HashRouter as Router,
   Switch,
@@ -15,8 +15,6 @@ import './App.css';
 import { AuthProvider } from '../contexts/Auth'
 
 function App() {
-  const [focusTime, setFocusTime] = useState(50)
-  const [alarmSound, setAlarmSound] = useState('alarm-sound')
 
   return (
     <AuthProvider>
@@ -34,12 +32,7 @@ function App() {
               <Stats />
             </Route>
             <Route path="/settings">
-              <Settings 
-                handleFocusTimeChange={setFocusTime} 
-                focus={focusTime}
-                setAlarmSound={setAlarmSound}
-                alarmSound={alarmSound}
-              />
+              <Settings />
             </Route>
             <Route path="/signup">
               <Log type="signup" />
